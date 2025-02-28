@@ -1,0 +1,400 @@
+\documentclass{exam}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{tikz}
+\makeatletter
+\newcommand\mathcircled[1]{%
+  \mathpalette\@mathcircled{#1}%
+}
+\newcommand\@mathcircled[2]{%
+  \tikz[baseline=(math.base)] \node[draw,circle,inner sep=1pt] (math) {$\m@th#1#2$};%
+}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[makeroom]{cancel}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+
+\renewcommand{\thepartno}{\thequestion.\alph{partno}}
+\renewcommand{\partlabel}{\alph{partno})}
+
+\lhead{Diskretna matematika 2\\}
+\rhead{Zadaća 1\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup
+\centering
+\LARGE Diskretna matematika 2\\
+\Large Zadaća 1\\
+\large \today\\
+\large Borna Gojšić\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Rj:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+\question Odredite $g = \text{nzd}(a, b)$ i nađite cijele brojeve $x$ i $y$ takve da je $ax + by = g$ ako je:
+\begin{parts}
+  \part $a = 2541$, $b = 1134$,
+  \part $a = 4379$, $b = 3306$.
+\end{parts}
+
+\begin{solution}
+  Koristit ćemo prošireni Euklidov algoritam za određivanje $g$ i $x$, $y$.
+  \begin{parts}
+    \part
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+      \hline
+      & & & & & &\\[-1em]
+      $x$ & $y$ & $g$ & $u$ & $v$ & $w$ & $\left\lfloor \frac{g}{w} \right\rfloor$\\
+      & & & & & &\\[-1em]
+      \hline
+      1 & 0 & 2541 & 0 & 1 & 1134 & 2 \\
+      0 & 1 & 1134 & 1 & -2 & 273 & 4 \\
+      1 & -2 & 273 & -4 & 9 & 42 & 6 \\
+      -4 & 9 & 42 & 25 & -56 & 21 & 2 \\
+      25 & -56 & 21 & & & 0 & \\
+      \hline
+    \end{tabular}
+    \vspace*{0.25cm}
+    \newline
+    Dakle, $\text{nzd}(2541, 1134) = 21$ i $2541 \cdot 25 + 1134 \cdot (-56) = 3$.
+
+    \part
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+      \hline
+      & & & & & &\\[-1em]
+      $x$ & $y$ & $g$ & $u$ & $v$ & $w$ & $\left\lfloor \frac{g}{w} \right\rfloor$\\
+      & & & & & &\\[-1em]
+      \hline
+      1 & 0 & 4379 & 0 & 1 & 3306 & 1 \\
+      0 & 1 & 3306 & 1 & -1 & 1073 & 3 \\
+      1 & -1 & 1073 & -3 & 4 & 87 & 12 \\
+      -3 & 4 & 87 & 37 & -49 & 29 & 3 \\
+      37 & -49 & 29 & & & 0 & \\
+      \hline
+    \end{tabular}
+    \vspace*{0.25cm}
+    \newline
+    Dakle, $\text{nzd}(4379, 3306) = 29$ i $4379 \cdot 37 + 3306 \cdot (-49) = 29$.
+  \end{parts}
+\end{solution}
+
+\question Odredite cijele brojeve $m$ i $n$ takve da je:
+\begin{parts}
+  \part $314m + 159n = 1$,
+  \part $1245m - 1603n = 1$.
+\end{parts}
+
+\begin{solution}
+  Ovaj ćemo zadatak također riješiti proširenim Euklidovim algoritmom.
+  \begin{parts}
+    \part
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+      \hline
+      & & & & & &\\[-1em]
+      $x$ & $y$ & $g$ & $u$ & $v$ & $w$ & $\left\lfloor \frac{g}{w} \right\rfloor$\\
+      & & & & & &\\[-1em]
+      \hline
+      1 & 0 & 314 & 0 & 1 & 159 & 1 \\
+      0 & 1 & 159 & 1 & -1 & 155 & 1 \\
+      1 & -1 & 155 & -1 & 2 & 4 & 38 \\
+      -1 & 2 & 4 & 39 & -77 & 3 & 1 \\
+      39 & -77 & 3 & -40 & 79 & 1 & 3 \\
+      -40 & 79 & 1 & & & 0 & \\
+      \hline
+    \end{tabular}
+    \vspace*{0.25cm}
+    \newline
+    Dakle, $314 \cdot (-40) + 159 \cdot 79 = 1$, tj. $m = -40$, $n = 79$.
+
+    \part
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+      \hline
+      & & & & & &\\[-1em]
+      $x$ & $y$ & $g$ & $u$ & $v$ & $w$ & $\left\lfloor \frac{g}{w} \right\rfloor$\\
+      & & & & & &\\[-1em]
+      \hline
+      1 & 0 & 1603 & 0 & 1 & 1245 & 1 \\
+      0 & 1 & 1245 & 1 & -1 & 358 & 3 \\
+      1 & -1 & 358 & -3 & 4 & 171 & 2 \\
+      -3 & 4 & 171 & 7 & -9 & 16 & 10 \\
+      7 & -9 & 16 & -73 & 94 & 11 & 1 \\
+      -73 & 94 & 11 & 80 & -103 & 5 & 2 \\
+      80 & -103 & 5 & -233 & 300 & 1 & 5 \\
+      -233 & 300 & 1 & & & 0 & \\
+      \hline
+    \end{tabular}
+    \vspace*{0.25cm}
+    \newline
+    Dakle, $1603 \cdot (-233) + 1245 \cdot 300 = 1$, tj. $m = 300$, $n = 233$.
+  \end{parts}
+\end{solution}
+
+\question Provjerite postoje li cijeli brojevi m i n takvi da je:
+\begin{parts}
+  \part $654m + 822n = -12$,
+  \part $515m + 5005n = 7$.
+\end{parts}
+Ukoliko takvi brojevi postoje odredite ih, u suprotnom obrazložite zašto takvi brojevi ne postoje.
+
+\begin{solution}
+  \begin{parts}
+    \part Postavit ćemo jednadžbu
+    \begin{eqnarray*}
+      822n + 654m = -12\\
+      137n + 109m = -2
+    \end{eqnarray*}
+    Budući da je $\text{nzd}(137, 109) = 1$, možemo koristiti prošireni Euklidov algoritam na jednadžbi
+    \begin{eqnarray*}
+      137x + 109y = 1
+    \end{eqnarray*}
+    i dobiti rješenje uz $m = -2y$, $n = -2x$.
+    \vspace*{0.25cm}
+    \newline
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+      \hline
+      & & & & & &\\[-1em]
+      $x$ & $y$ & $g$ & $u$ & $v$ & $w$ & $\left\lfloor \frac{g}{w} \right\rfloor$\\
+      & & & & & &\\[-1em]
+      \hline
+      1 & 0 & 137 & 0 & 1 & 109 & 1 \\
+      0 & 1 & 109 & 1 & -1 & 28 & 3 \\
+      1 & -1 & 28 & -3 & 4 & 25 & 1 \\
+      -3 & 4 & 25 & 4 & -5 & 3 & 8 \\
+      4 & -5 & 3 & -35 & 44 & 1 & 3 \\
+      -35 & 44 & 1 & & & 0 & \\
+      \hline
+    \end{tabular}
+    \vspace*{0.25cm}
+    \newline
+    Dakle, imamo $137 \cdot (-35) + 109 \cdot 44 = 1$, tj. $m = -88$, $n = 70$.
+
+    \part Ako rješenje postoji, to znači da za $g = \text{nzd}(515, 5005)$ vrijedi da $g \mid 7$, ali budući da očito $5 \mid g$, po tranzitivnosti relacija "biti djeljiv" trebali bismo imati $5 \mid 7$, ali to je kontradikcija. Dakle, rješenje ne postoji.
+  \end{parts}
+\end{solution}
+
+\pagebreak
+
+\question Neka je $r$ ostatak pri dijeljenju broja $a \in \mathbb{Z}$ brojem $b \in \mathbb{N}$. Dokažite da je $\text{nzd}(a, b) = \text{nzd}(b, r)$.
+
+\begin{solution}
+  Neka je $g = \text{nzd}(a, b)$ i $d = \text{nzd}(b, r)$. Budući da je $r$ ostatak pri dijeljenju, imamo $r = a - bq$ za neki $q \in \mathbb{Z}$. Budući da $g \mid a$ i $g \mid b$, imamo $g \mid a - bq = r$ pa imamo i $g \mid d$. S druge strane, $d \mid b$ i $d \mid r$ te imamo $a = bq + r$ pa imamo i $d \mid a$, tj. $d \mid g$. Dakle, budući da je $\text{nzd}$ po definciji $\in \mathbb{N}$, imamo $d = g$.
+\end{solution}
+
+\question Dokažite da se razlomak $\displaystyle \frac{21n + 4}{14n + 3}$ ne može skratiti ni za koji prirodan broj $n \in \mathbb{N}$. \newline
+$\underline{\text{Uputa}}$: Koristite Euklidov algoritam.
+
+\renewcommand{\solutiontitle}{\noindent\textbf{1. Rj:}\enspace}
+
+\begin{solution}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    & &\\[-1em]
+    a & b & $\left\lfloor \frac{a}{b} \right\rfloor$\\
+    & &\\[-1em]
+    \hline
+    21n + 4 & 14n + 3 & 1\\
+    14n + 3 & 7n + 1 & 2\\
+    7n + 1 & 1 & 7n + 1\\
+    1 & 0 &\\
+    \hline
+  \end{tabular}
+  \vspace*{0.25cm}
+  \newline
+  Dakle, $\text{nzd}(21n + 4, 14n + 3) = 1$ pa se razlomak ne može skratiti ni za koji $n \in \mathbb{N}$.
+\end{solution}
+
+\vspace*{-0.93cm}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{2. Rj:}\enspace}
+\begin{solution}
+  Razlomak se ne može skratiti ako je $g = \text{nzd}(21n + 4, 14n + 3) = 1$. Dakle, ako postoje $x, y \in \mathbb{Z}$ takvi da je za sve $n$ vrijedi
+  \begin{eqnarray*}
+    (21n + 4)x + (14n + 3)y = 1\\
+    (21x + 14y)n + 4x + 3y = 1
+  \end{eqnarray*}
+  znamo da $1 \mid g$ pa je $g = 1$. Dakle, moramo imati $21x + 14y = 0$ i $4x + 3y = 1$. Prva jednadžba daje $7(3x + 2y) = 0$, što znači da je $3x + 2y = 0$. Dakle, uvrštavanjem u prvu jednadžbu pomnoženu s 2 imamo
+  \begin{align*}
+    8x + 3 \cdot 2y &= 2\\
+    8x + 3 \cdot (-3x) &= 2\\
+    8x - 9x &= 2\\
+    x &= -2
+  \end{align*}
+  Dakle, za $x = -2$ i $y = 3$, imamo $g = 1$, tj. razlomak se ne može skratiti ni za koji $n \in \mathbb{N}$.
+\end{solution}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{Rj:}\enspace}
+
+\pagebreak
+
+\question Odredite pomoću Erastotenovog sita sve proste brojeve manje od 200.
+
+\begin{solution}
+  Pomoću Erastotenovog sita odredimo sve proste brojeve manje od 200.
+  \vspace*{0.25cm}
+  \newline
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    \cancel{1} & $\mathcircled{2}$ & $\mathcircled{3}$ & \cancel{4} & $\mathcircled{5}$ & \cancel{6} & $\mathcircled{7}$ & \cancel{8} & \cancel{9} & \cancel{10} & $\mathcircled{11}$ & \cancel{12}\\
+    \hline
+    $\mathcircled{13}$ & \cancel{14} & \cancel{15} & \cancel{16} & $\mathcircled{17}$ & \cancel{18} & $\mathcircled{19}$ & \cancel{20} & \cancel{21} & \cancel{22} & $\mathcircled{23}$ & \cancel{24}\\
+    \hline
+    \cancel{25} & \cancel{26} & \cancel{27} & \cancel{28} & $\mathcircled{29}$ & \cancel{30} & $\mathcircled{31}$ & \cancel{32} & \cancel{33} & \cancel{34} & \cancel{35} & \cancel{36}\\
+    \hline
+    $\mathcircled{37}$ & \cancel{38} & \cancel{39} & \cancel{40} & $\mathcircled{41}$ & \cancel{42} & $\mathcircled{43}$ & \cancel{44} & \cancel{45} & \cancel{46} & $\mathcircled{47}$ & \cancel{48}\\
+    \hline
+    \cancel{49} & \cancel{50} & \cancel{51} & \cancel{52} & $\mathcircled{53}$ & \cancel{54} & \cancel{55} & \cancel{56} & \cancel{57} & \cancel{58} & $\mathcircled{59}$ & \cancel{60}\\
+    \hline
+    $\mathcircled{61}$ & \cancel{62} & \cancel{63} & \cancel{64} & \cancel{65} & \cancel{66} & $\mathcircled{67}$ & \cancel{68} & \cancel{69} & \cancel{70} & $\mathcircled{71}$ & \cancel{72}\\
+    \hline
+    $\mathcircled{73}$ & \cancel{74} & \cancel{75} & \cancel{76} & \cancel{77} & \cancel{78} & $\mathcircled{79}$ & \cancel{80} & \cancel{81} & \cancel{82} & $\mathcircled{83}$ & \cancel{84}\\
+    \hline
+    \cancel{85} & \cancel{86} & \cancel{87} & \cancel{88} & $\mathcircled{89}$ & \cancel{90} & \cancel{91} & \cancel{92} & \cancel{93} & \cancel{94} & \cancel{95} & \cancel{96}\\
+    \hline
+    $\mathcircled{97}$ & \cancel{98} & \cancel{99} & \cancel{100} & $\mathcircled{101}$ & \cancel{102} & $\mathcircled{103}$ & \cancel{104} & \cancel{105} & \cancel{106} & $\mathcircled{107}$ & \cancel{108}\\
+    \hline
+    $\mathcircled{109}$ & \cancel{110} & \cancel{111} & \cancel{112} & $\mathcircled{113}$ & \cancel{114} & \cancel{115} & \cancel{116} & \cancel{117} & \cancel{118} & \cancel{119} & \cancel{120}\\
+    \hline
+    \cancel{121} & \cancel{122} & \cancel{123} & \cancel{124} & \cancel{125} & \cancel{126} & $\mathcircled{127}$ & \cancel{128} & \cancel{129} & \cancel{130} & $\mathcircled{131}$ & \cancel{132}\\
+    \hline
+    \cancel{133} & \cancel{134} & \cancel{135} & \cancel{136} & $\mathcircled{137}$ & \cancel{138} & $\mathcircled{139}$ & \cancel{140} & \cancel{141} & \cancel{142} & \cancel{143} & \cancel{144}\\
+    \hline
+    \cancel{145} & \cancel{146} & \cancel{147} & \cancel{148} & $\mathcircled{149}$ & \cancel{150} & $\mathcircled{151}$ & \cancel{152} & \cancel{153} & \cancel{154} & \cancel{155} & \cancel{156}\\
+    \hline
+    $\mathcircled{157}$ & \cancel{158} & \cancel{159} & \cancel{160} & \cancel{161} & \cancel{162} & $\mathcircled{163}$ & \cancel{164} & \cancel{165} & \cancel{166} & $\mathcircled{167}$ & \cancel{168}\\
+    \hline
+    \cancel{169} & \cancel{170} & \cancel{171} & \cancel{172} & $\mathcircled{173}$ & \cancel{174} & \cancel{175} & \cancel{176} & \cancel{177} & \cancel{178} & $\mathcircled{179}$ & \cancel{180}\\
+    \hline
+    $\mathcircled{181}$ & \cancel{182} & \cancel{183} & \cancel{184} & \cancel{185} & \cancel{186} & \cancel{187} & \cancel{188} & \cancel{189} & \cancel{190} & $\mathcircled{191}$ & \cancel{192}\\
+    \hline
+    $\mathcircled{193}$ & \cancel{194} & \cancel{195} & \cancel{196} & $\mathcircled{197}$ & \cancel{198} & $\mathcircled{199}$ & \cancel{200} &  &  &  & \\
+    \hline
+  \end{tabular}
+  \vspace*{0.25cm}
+\end{solution}
+
+\question Odredite sve prirodne brojeve $n$ takve da je $n^4 + 4$ prost broj.
+
+\begin{solution}
+  \begin{align*}
+    n^4 + 4 &= (n^2)^2 + 2^2 = (n^2)^2 + 4n^2 + 2^2 - 4n^2\\
+    &= (n^2 + 2)^2 - (2n)^2 = (n^2 + 2 + 2n)(n^2 + 2 - 2n)
+  \end{align*}
+  $n^4 + 4$ može biti prost ako i samo je jedan od njegovih faktora 1, a drugi prost. Dakle, pogledajmo $n^2 \pm 2n + 2 = 1$.
+  \begin{align*}
+    n^2 \pm 2n + 1 &= 0\\
+    (n \pm 1)^2 &= 0\\
+    n \pm 1 &= 0
+  \end{align*}
+  Dakle, $n^4 + 4$ je prost broj samo za $n = 1$.
+\end{solution}
+
+\pagebreak
+
+\question Dokažite da za $n > 3$ brojevi $n$, $2n + 1$, $4n + 1$ nisu svi prosti.
+
+\begin{solution}
+  Pretpostavimo da je $n$ prost, inače je tvrdnja trivijalna. Ako je $n > 3$ prost broj onda ga možemo zapisati kao $3k + 1$ ili $3k + 2$.
+  \begin{enumerate}
+    \item Ako je $n = 3k + 1$, tada je $2n + 1 = 6k + 3 = 3(2k + 1)$, što nije prost broj.
+    \item Ako je $n = 3k + 2$, tada je $4n + 1 = 12k + 9 = 3(4k + 3)$, što također nije prost broj.
+  \end{enumerate}
+\end{solution}
+
+\question Ako je $p$ prost broj veći od 3, dokažite da je broj $p^2 - 1$ djeljiv s 24. \newline
+\underline{Uputa:} Uočite da svaki prost broj veći od 3 mora biti oblika $6k + 1$ ili $6k + 5$, $k \geq 0$.
+
+\begin{solution}
+  \begin{enumerate}
+    \item Ako je $p = 6k + 1$, onda imamo
+      \begin{align*}
+        p^2 - 1 &= (6k + 1)^2 - 1 = 36k^2 + 12k + 1 - 1\\
+        &= 36k^2 + 12k = 12k(3k + 1)
+      \end{align*}
+      Znamo da je $k$ ili paran ili neparan. Ako je neparan, onda je $3k + 1$ paran, pa imamo $2 \mid k (3k + 1)$. Dakle, imamo i $24 \mid p^2 - 1$.
+    \item Ako je $p = 6k + 5$, onda imamo
+      \begin{align*}
+        p^2 - 1 &= (6k + 5)^2 - 1 = 36k^2 + 60k + 25 - 1\\
+        &= 36k^2 + 60k + 24 = 12k(3k + 5) + 24
+      \end{align*}
+      Slično kao u prošlom slučaju imamo $2 \mid k(3k + 5)$, pa $24 \mid p^2 - 1$.
+  \end{enumerate}
+\end{solution}
+
+\question Ako su $p$ i $8p - 1$ prosti brojevi, dokažite da je $8p + 1$ složeni broj.
+
+\begin{solution}
+  Prvo ćemo provjeriti slučajeve $p = 2$ i $p = 3$. Za $p = 2$ imamo $8p - 1 = 15$ što nije prost broj. Za $p = 3$ imamo $8p - 1 = 23$ što je prost broj, a $8p + 1 = 25$ što je složen broj. Dakle, pretpostavimo da je $p > 3$. Sada znamo da možemo pisati $p = 3k + 1$ ili $p = 3k + 2$.
+  \begin{enumerate}
+    \item Ako je $p = 3k + 1$, tada imamo $8p + 1 = 24k + 8 + 1 = 3(8k + 3)$, što je složen broj.
+    \item Ako je $p = 3k + 2$, tada imamo $8p - 1 = 24k + 16 - 1 = 3(8k + 5)$ što nije prost broj pa uvjet nije zadovoljen.
+  \end{enumerate}
+\end{solution}
+
+\pagebreak
+
+\question
+\begin{parts}
+  \part S koliko nula završava broj 2013!?
+  \part S koliko nula završava binomni koeficijent $\displaystyle \binom{4321}{1234}$?
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part $\nu_5(2013!) = \left\lfloor \frac{2013}{5} \right\rfloor + \left\lfloor \frac{2013}{25} \right\rfloor + \left\lfloor \frac{2013}{125} \right\rfloor + \left\lfloor \frac{2013}{625} \right\rfloor = 402 + 80 + 16 + 3 = 501$. Dakle, broj 2013! završava s 501 nulom.
+    \part
+    \begin{align*}
+      \nu_5\left(\binom{4321}{1234}\right) &= \nu_5\left(\frac{4321!}{1234! (4321-1234)!}\right)\\
+      &= \nu_5(4321!) - \nu_5(1234!) - \nu_5(3087!)\\
+      &= \left\lfloor \frac{4321}{5} \right\rfloor + \left\lfloor \frac{4321}{25} \right\rfloor + \left\lfloor \frac{4321}{125} \right\rfloor + \left\lfloor \frac{4321}{625} \right\rfloor + \left\lfloor \frac{4321}{3125} \right\rfloor\\
+      &- \left\lfloor \frac{1234}{5} \right\rfloor - \left\lfloor \frac{1234}{25} \right\rfloor - \left\lfloor \frac{1234}{125} \right\rfloor - \left\lfloor \frac{1234}{625} \right\rfloor\\
+      &- \left\lfloor \frac{3087}{5} \right\rfloor - \left\lfloor \frac{3087}{25} \right\rfloor - \left\lfloor \frac{3087}{125} \right\rfloor - \left\lfloor \frac{3087}{625} \right\rfloor\\
+      &= 864 + 172 + 34 + 6 + 1
+      - 246 - 49 - 9 - 1
+      - 617 - 123 - 24 - 4 = 4
+    \end{align*}
+    Dakle, binomni koeficijent $\displaystyle \binom{4321}{1234}$ završava s 4 nule.
+  \end{parts}
+\end{solution}
+
+\question
+\begin{parts}
+  \part Je li binomni koficijent $\displaystyle \binom{2013}{35}$ djeljiv s 49? Obrazložite!
+  \part Odredite sve prirodne brojeve $n$ takve da je $\displaystyle \frac{2013!}{35^n}$ također prirodan broj.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part
+    \begin{align*}
+      \nu_7\left( \binom{2013}{35} \right) &= \nu_7\left( \frac{2013!}{35!(2013-35)!} \right)\\
+      &= \nu_7(2013!) - \nu_7(35!) - \nu_7(1978!)\\
+      &= \left\lfloor \frac{2013}{7} \right\rfloor + \left\lfloor \frac{2013}{49} \right\rfloor + \left\lfloor \frac{2013}{343} \right\rfloor - \left\lfloor \frac{35}{7} \right\rfloor\\
+      &- \left\lfloor \frac{1978}{7} \right\rfloor - \left\lfloor \frac{1978}{49} \right\rfloor - \left\lfloor \frac{1978}{343} \right\rfloor\\
+      &= 287 + 41 + 5 - 5 - 282 - 40 - 5 = 1
+    \end{align*} Dakle, binomni koeficijent $\displaystyle \binom{2013}{35}$ nije djeljiv s 49.
+    \part $$
+    \nu_7(2013!) = \left\lfloor \frac{2013}{7} \right\rfloor + \left\lfloor \frac{2013}{49} \right\rfloor + \left\lfloor \frac{2013}{343} \right\rfloor = 287 + 41 + 5 = 333
+    $$
+    Iz \ref{part@11@1} znamo da je $\nu_5(2013!) = 501$, pa je $\nu_{35}(2013!) = \min\{333, 501\} = 333$. Dakle, $\displaystyle \frac{2013!}{35^n}$ je prirodan broj za $n \leq 333$.
+  \end{parts}
+\end{solution}
+
+\question Dokažite da postoji beskonačno mnogo cijelih brojeva $n$ takvih da su brojevi $2n^2 + 3$ i $n^2 + n + 1$ relativno prosti. \newline
+\underline{Uputa}: Dokažite prvo da je $\text{nzd}(2n^2 + 3, n^2 + n + 1) = 1$ ili 7.
+
+\begin{solution}
+  Neka je $g = \text{nzd}(2n^2 + 3, n^2 + n + 1)$. Budući da je $(2n^2 + 3) \cdot (-1) + (n^2 + n + 1) \cdot 2 = -2n^2 - 3 + 2n^2 + 2n + 2 = 2n - 1$, imamo $g \mid 2n - 1$. Nadalje, imamo $g \mid g' = \text{nzd}(n^2 + n + 1, 2n - 1)$. Budući da je $(n^2 + n + 1) \cdot 2 - (2n - 1) \cdot (n + 1) = 2n^2 + 2n + 2 - 2n^2 - n + 1 = n + 3$, imamo $g' \mid n + 3$. Nadalje, imamo $g' \mid g'' = \text{nzd}(2n - 1, n + 3)$ te $(2n - 1) \cdot (-1) + (n + 3) \cdot 2 = -2n + 1 + 2n + 6 = 7$, pa imamo $g'' \mid 7$. Budući da imamo $g |g'$, $g' | g''$ i $g'' | 7$, imamo $g | 7$, tj. $g = 1$ ili $g = 7$.
+  Ako uzmemo $n = 7k$, očito je da $7 \nmid 2n^2 + 3$ pa je $g = 1$. Budući da viškratnika ima beskonačno mnogo, imamo beskonačno mnogo $n$ takvih da su brojevi $2n^2 + 3$ i $n^2 + n + 1$ relativno prosti.
+\end{solution}
+
+\end{questions}
+
+\end{document}
