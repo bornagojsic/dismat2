@@ -1,0 +1,258 @@
+\documentclass{exam}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{tikz}
+\makeatletter
+\newcommand\mathcircled[1]{%
+  \mathpalette\@mathcircled{#1}%
+}
+\newcommand\@mathcircled[2]{%
+  \tikz[baseline=(math.base)] \node[draw,circle,inner sep=1pt] (math) {$\m@th#1#2$};%
+}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[makeroom]{cancel}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+
+\renewcommand{\thepartno}{\thequestion.\alph{partno}}
+\renewcommand{\partlabel}{\alph{partno})}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+\def \brojZadace {3}
+
+\lhead{DISMAT 2 - Zadaća \brojZadace\\}
+\rhead{Borna Gojšić\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup
+\centering
+\LARGE Diskretna matematika 2\\
+\Large Zadaća \brojZadace\\
+\large \today\\
+\large Borna Gojšić\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Rj:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+\question Dokažite da je broj $3^{105} + 4^{105}$ djeljiv sa 7 i 13, a nije djeljiv s 11.
+
+\begin{solution}
+  Imamo $\varphi(7) = 6$, $\varphi(13) = 12$, $\varphi(11) = 10$.
+  Dakle, imamo
+  \[
+    3^{105} + 4^{105} \equiv 3^3 + 4^3 \equiv 27 + 64 \equiv 91 \equiv 0 \Mod{7},
+  \]
+  \[
+    3^{105} + 4^{105} \equiv 3^9 + 4^9 \equiv (3^3)^3 + (4^3)^3 \equiv 27^3 + 64^3 \equiv 1^3 + 12^3 \equiv 1 - 1 \equiv 0 \Mod{13},
+  \]
+  pa je $3^{105} + 4^{105}$ djeljiv s 7 i 13.
+\end{solution}
+
+\question Odredite ostatak pri dijeljenju broja $1111^{222} \cdot 33^{444}$ s brojem 19.
+
+\begin{solution}
+  Znamo da je $\varphi(19) = 18$, pa je
+  \[
+    1111^{222} \cdot 33^{444} \equiv 13^6 \cdot 14^{12} = (13 \cdot 196)^6 \equiv 2^6 \equiv 64 \equiv 7 \Mod{19}
+  \]
+  i stoga je ostatak pri dijeljenju broja $1111^{222} \cdot 33^{444}$ s brojem 19 jednak 7.
+\end{solution}
+
+\question Odredite ostatak pri dijeljenju broja $73^{73}$ s brojem 38.
+
+\begin{solution}
+  $\varphi(38) = \varphi(2 \cdot 19) = 18$, pa je
+  \[
+    73^{73} \equiv 73^1 \equiv 35 \Mod{38}.
+  \]
+  i stoga je ostatak pri dijeljenju broja $73^{73}$ s brojem 38 jednak 35.
+\end{solution}
+
+\question Odredite ostatak pri dijeljenju broja $53^{181}$ s brojem 105.
+
+\begin{solution}
+  Budući da je $105 = 3 \cdot 5 \cdot 7$, imamo
+  \begin{align*}
+    53^{181} \equiv 2^{181} \equiv 2^{1} &\equiv 2 \Mod{3}\\
+    53^{181} \equiv 3^{181} \equiv 3^{1} &\equiv 3 \Mod{5}\\
+    53^{181} \equiv 4^{181} &\equiv 4 \Mod{7}
+  \end{align*}
+  Dakle, imamo sustav kongruencija:
+  \[
+    x \equiv 2 \Mod{3}, \quad x \equiv 3 \Mod{5}, \quad x \equiv 4 \Mod{7}.
+  \]
+  Rješavamo sustav kineskom teoremom o ostacima s $m = 105$ i $x_0 = 35x_1 + 21x_2 + 15x_3$, gdje imamo
+  \[
+    35 x_1 \equiv 1 \Mod{3}, \quad 21 x_2 \equiv 1 \Mod{5}, \quad 15 x_3 \equiv 1 \Mod{7}.
+  \]
+  \begin{align*}
+    2 x_1 \equiv 2 \Mod{3} \implies &x_1 = 1\\
+    x_2 \equiv 3 \Mod{5} \implies &x_2 = 3\\
+    x_3 \equiv 4 \Mod{7} \implies &x_3 = 4
+  \end{align*}
+  Dakle, imamo $x_0 = 35 + 21 \cdot 3 + 15 \cdot 4 = 158$, pa je $53^{181} \equiv 158 \equiv 53 \Mod{105}$.
+\end{solution}
+
+\question Odredite ostatak pri dijeljenju broja $314^{162}$ s brojem 165.
+
+\begin{solution}
+  Budući da je $165 = 3 \cdot 5 \cdot 11$, imamo
+  \begin{align*}
+    314^{162} \equiv 2^{162} \equiv 2^{0} &\equiv 1 \Mod{3}\\
+    314^{162} \equiv (-1)^{162} &\equiv 1 \Mod{5}\\
+    314^{162} \equiv 6^{162} \equiv 6^2 &\equiv 3 \Mod{11}
+  \end{align*}
+  Sada rješavamo sustav kongruencija pomoću CRT:
+  \begin{align*}
+    5 \cdot 11 x_1 \equiv 1 \implies x_1 \equiv 1 \Mod{3} &\implies x_1 = -2\\
+    3 \cdot 11 x_2 \equiv 1 \implies 3 x_2 \equiv 1 \Mod{5} &\implies x_1 = 2\\
+    3 \cdot 5 x_3 \equiv 3 \implies 5 x_3 \equiv 1 \Mod{11} &\implies x_1 = 9
+  \end{align*}
+  Dakle, $x_0 = -2 \cdot 55 + 2 \cdot 33 + 9 \cdot 15 = 91$, pa je $314^{162} \equiv 91 \Mod{165}$.
+\end{solution}
+
+\question Odredite ostatak pri dijeljenju $1^5 + 2^5 + 3^5 + \cdots + 99^5 + 100^5$ s 4.
+
+\begin{solution}
+  Budući da je $\varphi(4) = 2$,
+  \[
+    \sum\limits_{i=1}^{100} i^5 \equiv \sum\limits_{i=1}^{100} i \equiv 25 \sum\limits_{i=1}^{4} i = 25 \cdot 10 \equiv 1 \cdot 2 \equiv 2 \Mod{4}.
+  \]
+  pa je ostatak sume pri dijeljenju s 4 jednak 2.
+\end{solution}
+
+\question Odredite posljednje dvije znamenke broja $53^{82}$.
+
+\begin{solution}
+  Znamo da je $\varphi(100) = 40$, pa je
+  \[
+    53^{82} \equiv 53^2 \equiv 2809 \equiv 9 \Mod{100}.
+  \]
+  Dakle, posljednje dvije znamenke broja $53^{82}$ su 09.
+\end{solution}
+
+\question Odredite posljednje dvije znamenke broja $71^{245}$.
+
+\begin{solution}
+  Znamo da je $\varphi(25) = 20$ i $\varphi(4) = 2$, pa je
+  \begin{align*}
+    71^{245} \equiv 71^5 \equiv (-4)^5 \equiv -4 \cdot 16^2 \equiv -4 \cdot (-9)^2 \equiv -4 \cdot 81 \equiv -4 \cdot 6 \equiv -24 &\equiv 1 \Mod{25}\\
+    71^{245} \equiv (-1)^{245} \equiv -1 &\equiv 3 \Mod{4}
+  \end{align*}
+  Sada rješavamo sustav kongruencija pomoću CRT:
+  \begin{align*}
+    4 x_1 \equiv 1 \Mod{25} &\implies x_1 = 19\\
+    25 x_2 \equiv 3 \Mod{4} \implies x_2 \equiv 3 \Mod{4} &\implies x_2 = -1
+  \end{align*}
+  Dakle, $x_0 = 4 \cdot 19 + 25 \cdot (-1) = 51$. Dakle, posljednje dvije znamenke broja $71^{245}$ su 51.
+\end{solution}
+
+\question
+\begin{parts}
+  \part Odredite posljednje dvije znamenke broja $14^{2012}$.
+  \part Odredite posljednje tri znamenke broja $14^{2012}$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part Znamo da je $\varphi(25) = 20$ i $\varphi(4) = 2$, pa je
+    \begin{align*}
+      14^{2012} \equiv 14^{12} \equiv 196^6 \equiv (-4)^6 \equiv 16^3 \equiv (-9)^3 \equiv -729 &\equiv -4 \Mod{25}\\
+      14^{2012} &\equiv 0 \Mod{4}
+    \end{align*}
+    Sada rješavamo sustav kongruencija pomoću CRT:
+    \begin{align*}
+      4 x_1 \equiv -4 \Mod{25} &\implies x_1 = -1\\
+      25 x_2 \equiv 0 \Mod{4} \implies x_2 \equiv 0 \Mod{4} &\implies x_2 = 0
+    \end{align*}
+    Dakle, $x_0 = 4 \cdot -1 + 25 \cdot 0 = -4 \equiv 96 \Mod{100}$. Dakle, posljednje dvije znamenke broja $14^{2012}$ su 96.
+    \part Znamo da je $\varphi(125) = 100$ i $\varphi(8) = 4$, pa je
+    \begin{align*}
+      14^{2012} \equiv 14^{12} \equiv 196^6 \equiv (71)^6 \equiv 5041^3 \equiv 41^3 &\equiv 46 \Mod{125}\\
+      14^{2012} &\equiv 0 \Mod{8}
+    \end{align*}
+    Sada rješavamo sustav kongruencija pomoću CRT:
+    \begin{align*}
+      8 x_1 \equiv 46 \Mod{125} &\implies x_1 = 37\\
+      125 x_2 \equiv 0 \Mod{8} &\implies x_2 = 0
+    \end{align*}
+    Dakle, $x_0 = 8 \cdot 37 + 125 \cdot 0 = 296$. Dakle, posljednje tri znamenke broja $14^{2012}$ su 296.
+  \end{parts}
+\end{solution}
+
+\pagebreak
+
+\question Odredite posljednje tri znamenke broja $1^{2013} + 2^{2013} + 3^{2013} + \cdots + 1000^{2013}$.
+
+\begin{solution}
+  \[
+    (1000 - n)^{2013} + n ^{2013} \equiv (-n)^{2013} + n^{2013} \equiv 0 \Mod{1000}
+  \]
+  \[
+    \sum\limits_{i = 1}^{1000} i^{2013} \equiv \sum\limits{i = 1}^{499} i^{2013} + 500^3 + \sum\limits{i = 1}^{499} (1000 - i)^{2013} \equiv 0 \Mod{1000}
+  \]
+  Dakle, posljednje tri znamenke su 000.
+\end{solution}
+
+\question Neka je $p$ neparan prost broj.
+\begin{parts}
+  \part Dokažite da je $1^{p-1} + 2^{p-1} + \cdots + (p - 1)^{p-1} \equiv -1 \Mod{p}$.
+  \part Dokažite da je $1^p + 2^p + \cdots + (p - 1)^p \equiv 0 \Mod{p}$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part
+    \[
+      \sum\limits_{i=1}^{p-1} i^{p-1} \equiv \sum\limits_{i=1}^{p-1} 1 \equiv p-1 \equiv -1 \Mod{p}.
+    \]
+    \part
+    \[
+      \sum\limits_{i=1}^{p-1} i^{p-1} \equiv \sum\limits_{i=1}^{p-1} i \equiv \frac{p(p-1)}{2} \equiv 0 \Mod{p}.
+    \]
+    Posljednja jednakost slijedi iz činjenice da je $p$ neparan, pa je $p-1$ paran, pa je $p \mid \frac{p(p-1)}{2}$.
+  \end{parts}
+\end{solution}
+
+\question Neka su $m$ i $n$ relativno prosti prirodni brojevi. Dokažite da je tada
+\[
+  m^{\varphi(n)} + n^{\varphi(m)} \equiv 1 \Mod{mn},
+\]
+gdje je $\varphi$ Eulerova funkcija.
+
+\begin{solution}
+  Budući da imamo $\text{nzd}(m, n) = 1$, imamo $m^{\varphi(n)} \equiv 1 \Mod{n}$ i $n^{\varphi(m)} \equiv 1 \Mod{m}$, pa imamo
+  \[
+    m^{\varphi(n)} + n^{\varphi(m)} \equiv 0 + 1 \equiv 1 \Mod{m}
+  \]
+  \[
+    m^{\varphi(n)} + n^{\varphi(m)} \equiv 1 + 0 \equiv 1 \Mod{n}
+  \]
+  Sada imamo $m \mid m^{\varphi(n)} + n^{\varphi(m)} - 1$ i $n \mid m^{\varphi(n)} + n^{\varphi(m)} - 1$, pa je $mn \mid m^{\varphi(n)} + n^{\varphi(m)} - 1$.
+\end{solution}
+
+\pagebreak
+
+\question Neka je $p$ prost, te neka su $a$ i $b$ prirodni brojevi takvi da je $a^p \equiv b^p \Mod{p}$. Dokažite
+da je tada $a^p \equiv b^p \Mod{p^2}$. \newline
+Uputa: Koristite identitet $x^n - y^n = (x-y)(x^{n-1} +x^{n-2} y + \cdots +xy^{n-2} +y^{n-1})$, $n \in \mathbb{N}$.
+
+\begin{solution}
+  Po malom Fermatovom teoremu, imamo: $a^p \equiv a \Mod{p}$ i $b^p \equiv b \Mod{p}$. Dakle,
+  \[
+    a \equiv b \Mod{p}
+  \]
+  Onda imamo $a^{p-1} + a^{p-2}b + \cdots + ab^{p-2} + b^{p-1} \equiv p \cdot a^{p-1} \equiv 0 \Mod{p}$. Dakle, imamo $p \mid a - b$ i $p \mid a^{p-1} + a^{p-2}b + \cdots + ab^{p-2} + b^{p-1}$. Stoga $p^2 \mid (a-b)(a^{p-1} + a^{p-2}b + \cdots + ab^{p-2} + b^{p-1})$, tj. $a^p \equiv b^p \Mod{p^2}$.
+\end{solution}
+
+\end{questions}
+
+\end{document}
