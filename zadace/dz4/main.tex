@@ -1,0 +1,310 @@
+\documentclass{exam}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{tikz}
+\makeatletter
+\newcommand\mathcircled[1]{%
+  \mathpalette\@mathcircled{#1}%
+}
+\newcommand\@mathcircled[2]{%
+  \tikz[baseline=(math.base)] \node[draw,circle,inner sep=1pt] (math) {$\m@th#1#2$};%
+}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[makeroom]{cancel}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+
+\renewcommand{\thepartno}{\thequestion.\alph{partno}}
+\renewcommand{\partlabel}{\alph{partno})}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+\def \brojZadace {4}
+
+\lhead{DISMAT 2 - Zadaća \brojZadace\\}
+\rhead{Borna Gojšić\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup
+\centering
+\LARGE Diskretna matematika 2\\
+\Large Zadaća \brojZadace\\
+\large \today\\
+\large Borna Gojšić\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Rj:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+\question
+\begin{parts}
+  \part Postoji li prirodan broj $n > 1$ takav da je $\varphi(n) = n$. Obrazložite!
+  \part Odredite sve prirodne brojeve $n$ takve da je $\varphi(n) = n - 1$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part Ne postoji, jer je za svaki prirodan broj $n > 1$, $\text{nzd}(n, n) = n$, pa je onda $\varphi(n) \leq n - 1$.
+    \part Po prošlom zadtaku, znamo da je $\varphi(n) \leq n - 1$ za sve $n > 1$ te je $\varphi(1) = 1$ pa to može vrijediti samo za $n$ takve nemaju djelitelja $1 < d < n$, a to je točno definicija prostih brojeva.
+  \end{parts}
+\end{solution}
+
+\question Odredite sve prirodne brojeve $n$ takve da je:
+\begin{parts}
+  \part $\varphi(n) = 4$
+  \part $\varphi(n) = 20$
+  \part $\varphi(n) = 56$
+  \part $\varphi(n) = 66$
+  \part $\varphi(n) = 100$
+  \part $\varphi(n) = 162$
+\end{parts}
+
+\begin{solution}
+  Neka je $n = p_1^{\alpha_1} \cdots p_k^{\alpha_k}$, tada je $\varphi(n) = p_1^{\alpha_1 - 1}(p_1 - 1) \cdots p_k^{\alpha_k - 1}(p_k - 1)$.
+  \begin{parts}
+    \part $\varphi(n) = p_1^{\alpha_1 - 1}(p_1 - 1) \cdots p_k^{\alpha_k - 1}(p_k - 1) = 4$. Iz $p_i - 1 \mid 4$ slijedi da je $p_i \in \{2, 3, 5\}$. Ako je $p_i = 2$, onda je $\alpha_i \leq 3$, a ako je $p_i \neq 2$ je $\alpha_i = 1$. Neka je $k=2^{\alpha_1}$ ili 1, onda imamo mogućnosti:
+    \begin{enumerate}
+      \item $n = 3 \cdot k \implies \varphi(n) = 2 \cdot \varphi(k) = 4 \implies \varphi(k) = 2^{\alpha_1 - 1} = 2 \implies n = 2^2 \cdot 3 = 12$
+
+      \item $n = 5 \cdot k \implies \varphi(n) = 4 \cdot \varphi(k) = 4 \implies \varphi(k) = 2^{\alpha_1 - 1} = 1 \implies n = 5 \text{ ili } n = 10$
+
+      \item $n = k \implies \varphi(n) = 2^{\alpha_1 - 1} = 4 \implies n = 8$
+    \end{enumerate}
+
+    \part $\varphi(n) = p_1^{\alpha_1 - 1}(p_1 - 1) \cdots p_k^{\alpha_k - 1}(p_k - 1) = 20$. Iz $p_i - 1 \mid 20$ slijedi da je $p_i \in \{2, 3, 5, 11\}$. Ako je $p_i = 2$, onda je $\alpha_i \leq 3$, ako je $p_i = 5$, onda je $\alpha_i \leq 2$, a ako je $p_i \neq 2, 5$ je $\alpha_i = 1$. Neka je $k=2^{\alpha_1} \cdot 5^{\alpha_2}$ ili 1, onda imamo mogućnosti:
+    \begin{enumerate}
+      \item $n = 3 \cdot k \implies \varphi(n) = 2 \cdot \varphi(k) = 20 \implies \varphi(k) = 10 \implies \emptyset$
+      \item $n = 11 \cdot k \implies \varphi(n) = 10 \cdot \varphi(k) = 20 \implies \varphi(k) = 2 \implies n = 44$
+      \item $n = 3 \cdot 11 \cdot k \implies \varphi(n) = 2 \cdot 10 \cdot \varphi(k) = 20 \implies \varphi(k) = 1 \implies n = 33 \text{ ili } n = 66$
+      \item $n = k \implies \varphi(n) = 20 \implies n = 25 \text{ ili } n = 50$
+    \end{enumerate}
+
+    \part Iz $p_i - 1 \mid 56 = 2^3 \cdot 7$ slijedi da je $p_i - 1 \in \{1, 2, 4, 7, 8, 14, 28, 56\}$, tj. $p_i \in \{2, 3, 5, 29\}$. Nadalje, iz $p_i - 1 \mid 7$ slijedi da je $n = 29 \cdot m$, gdje je $\varphi(m) = 2$. Dakle, $m \in \{3, 4, 6\}$, pa je $n \in \{87, 116, 174\}$.
+
+    \part Iz $p_i - 1 \mid 66 = 2 \cdot 3 \cdot 11$ slijedi da je $p_i - 1 \in \{1, 2, 3, 6, 11, 22, 33, 66\}$, tj. $p_i \in \{2, 3, 7, 23, 67\}$. Iz $p_i - 1 \mid 11$ slijedi:
+    \begin{enumerate}
+      \item $p_i = 23 \implies n = 23 \cdot m$, gdje je $\varphi(m) = 3$. Ali, ne postoji $m$ za koji je $\varphi(m)$ neparan broj veći od 1.
+      \item $p_i = 67 \implies n = 67 \cdot m$, gdje je $\varphi(m) = 1$. Dakle, $m \in \{1, 2\}$ pa je $n \in \{67, 134\}$.
+    \end{enumerate}
+
+    \part Iz $p_i - 1 \mid 100 = 2^2 \cdot 5^2$ slijedi $p_i - 1 \in \{1, 2, 4, 5, 10, 20, 25, 50, 100\}$, tj. $p_i \in \{2, 3, 5, 11, 101\}$.
+    \begin{enumerate}
+      \item Ako je $p_i = 101$, onda imamo $n = 101$ ili $n = 202$.
+      \item Ako je $p_i = 11$, onda imamo $n = 11 \cdot m$, gdje je $\varphi(m) = 10$. Ali, to vrijedi samo za $m = 11$ i $m = 22$ pa nema rješenja u tom slučaju.
+      \item Iz $p_i - 1 \mid 5$ nemamo rješenja. Pa znamo da moramo imate $p_i = 5$. Dakle, $n = 5^3 \cdot m$, gdje je $\varphi(m) = 1$. Dakle, $m = 1$ ili $m = 2$ pa je $n = 125$ ili $n = 250$.
+    \end{enumerate}
+
+    \part Iz $p_i - 1 \mid 162 = 2 \cdot 3^4$ slijedi $p_i - 1 \in \{1, 2, 3, 6, 9, 18, 27, 54, 81, 162\}$, tj. $p_i \in \{2, 3, 7, 19, 163\}$.
+    \begin{enumerate}
+      \item Ako je $p_i = 163$, onda imamo $n = 163$ ili $n = 326$.
+      \item Ako je $p_i = 19$, onda imamo $n = 19 \cdot m$, gdje je $\varphi(m) = 9$, ali 9 je neparan broj veći od 1 pa nemamo rješenja u tom slučaju.
+      \item Ako je $p_i = 7$, onda imamo $n = 7 \cdot m$, gdje je $\varphi(m) = 27$, ali 27 je neparan broj veći od 1 pa nemamo rješenja ni u tom slučaju.
+      \item Ako je $p_i = 3$, onda imamo $n = 3^5 \cdot m$, gdje je $\varphi(m) = 1$. Dakle, $m = 1$ ili $m = 2$ pa je $n = 243$ ili $n = 486$.
+    \end{enumerate}
+  \end{parts}
+\end{solution}
+
+\question Dokažite da ne postoji prirodan broj $n$ takav da je $\varphi(n) = 14$.
+
+\begin{solution}
+  Neka je $n = p_1^{\alpha_1} \cdots p_k^{\alpha_k}$, tada je $\varphi(n) = p_1^{\alpha_1 - 1}(p_1 - 1) \cdots p_k^{\alpha_k - 1}(p_k - 1)$. Iz $p_i - 1 | 14$ slijedi $p_i - 1 \in \{1, 2, 7, 14\}$, tj. $p_i \in \{2, 3\}$. Dakle, imamo $n = 2^{\alpha_1} \cdot 3^{\alpha_2}$, pa je $\varphi(n) = 2^{\alpha_1 - 1} \cdot 1 \cdot 3^{\alpha_2 - 1} \cdot 2 = 14 \implies 2^{\alpha_1 - 1} \cdot 3^{\alpha_2 - 1} = 7$. Desnu stranu jednadžbe dijeli 7, a lijevu ne pa nema rješenja. Analogno se ne dobije rješenje za $n = 2^{\alpha_1}$ i $n = 3^{\alpha_2}$.
+\end{solution}
+
+\question Dokažite da ne postoje prirodni brojevi $m$ i $n$ takvi da je $\varphi(n) = 2 \cdot 7^m$. \newline
+\underline{Uputa}: Uočite da je $7^m \equiv 1 \Mod{3}$ za svaki $m \in \mathbb{N}$.
+
+\begin{solution}
+  Neka je $n = p_1^{\alpha_1} \cdots p_k^{\alpha_k}$. Ako $3 \mid n$, onda imamo $3^2 \nmid n$. Preptpostavimo suprotno, onda bismo imali $\varphi(n) \equiv 0 \Mod{3}$, ali $2 \cdot 7^m \equiv 2\Mod{3}$ što je kontradikcija. Neka je $n = 2^{\alpha} \cdot 3^{\beta} \cdot p_1^{\alpha_1} \cdots p_k^{\alpha_k}$ za $\beta \in \{0, 1\}$. Tada imamo dva različita slučaja (jer $2 \cdot 7^m \not\equiv 0 \Mod{4}$):
+
+  \pagebreak
+
+  \begin{enumerate}
+    \item Ako $2 \mid \varphi(n)$, onda imamo
+      \[
+        (p_1 - 1) \cdot p_1^{\alpha_1 - 1} \cdots (p_k - 1) \cdot p_k^{\alpha_k - 1} = 7^m
+      \]
+      Budući da su svi $p_i > 3$, imamo $p_i = 6x_i \pm 1$. Točnije, moramo imati $p_i = 6x_i - 1$ za sve $i \in \{1, \dots, k\}$ jer bi inače 6 dijelo lijevu stranu jednadžbe, ali ne bi dijelio desnu. Ali sada 2 dijeli lijevu stranu, ali ne dijeli desnu, što je kontradikcija. Dakle, nema rješenja u ovom slučaju.
+    \item Ako $2 \nmid \varphi(n)$, onda imamo $n = 2^{\alpha} \cdot p_1^{\alpha_1} \cdots p_k^{\alpha_k}$ gdje je $\alpha \in \{0, 1\}$. Tada imamo
+      \[
+        (p_1 - 1) \cdot p_1^{\alpha_1 - 1} \cdots (p_k - 1) \cdot p_k^{\alpha_k - 1} = 2 \cdot7^m
+      \]
+      Budući da su svi $p_i > 3$, imamo $p_i = 6x_i \pm 1$. Točnije, moramo imati $p_i = 6x_i - 1$ za sve $i \in \{1, \dots, k\}$ jer bi inače 6 dijelo lijevu stranu jednadžbe, ali ne bi dijelio desnu. Sada vidimo da $n$ mora imati samo jedan prosti faktor oblika $6x - 1$ jer bi inače 4 dijelo lijevu stranu, ali ne bi dijelio desnu. Dakle, $\varphi(n) = 2(3x - 1) \cdot (6x - 1)^{\alpha_1} = 2 \cdot 7^m$, tj. $(3x - 1) \cdot (6x - 1)^{\alpha_1} = 7^m$. Dakle, $7 \mid 3x - 1$ i $7 \mid 6x - 1$, tj. $7 \mid 6(3x - 1) - 3(6x - 1) = 3$ što je kontradikcija. Dakle, nema rješenja ni u ovom slučaju.
+  \end{enumerate}
+\end{solution}
+
+\question Odredite sve prirodne brojeve $n$ takve da je:
+\begin{parts}
+  \part $\displaystyle \frac{\varphi(n)}{n} = \frac{2}{7}$
+  \part $\displaystyle \frac{\varphi(n)}{n} = \frac{4}{11}$
+\end{parts}
+
+\begin{solution}
+  Neka je $n = p_1^{\alpha_1} \cdots p_k^{\alpha_k}$, tada je $\varphi(n) = p_1^{\alpha_1 - 1}(p_1 - 1) \cdots p_k^{\alpha_k - 1}(p_k - 1)$.
+  \[
+    \displaystyle \frac{\varphi(n)}{n} = \frac{p_1^{\alpha_1 - 1}(p_1 - 1) \cdots p_k^{\alpha_k - 1}(p_k - 1)}{p_1^{\alpha_1} \cdots p_k^{\alpha_k}} = \frac{p_1 - 1}{p_1} \cdots \frac{p_k - 1}{p_k}
+  \]
+  Ako je $\displaystyle \frac{\varphi(n)}{n} = \frac{a}{b}$ s $\text{nzd}(a, b) = 1$, i neka je $q_l \mid b$, onda je također $q_l \mid n$. Pretpostavimo da postoji neki $p_j > q_l$. To znači da se $p_j$ skratio s nekim faktorom iz $(p_1 - 1) \cdots (p_k - 1)$. Ali $\varphi(p_j) = p_j - 1$ i $p_i - 1 < p_j$ za $i \in \{1, \dots, k\}$ pa se $q_j$ nije mogao skratiti. Došli smo do kontradikcije, pa je $n = p_1^{\alpha_1} \cdots q_l^{\alpha_l}$. Također, ako za neki $1 < p < p_k$ vrijedi da $\text{nzd}(p, p_j - 1) = 1$ za sve $j \in \{1, \dots, k\}$ i $p \nmid b$, onda $p \nmid n$.
+  \begin{parts}
+    \part Znamo da je 7 najveći mogući prosti broj u rastavu od $n$. Također $p_i - 1 \in \{1,2,4,6\}$ pa 5 nije prosti faktor od $n$. Dakle, imamo slučajeve:
+    \begin{enumerate}
+      \item $n = 2^{\alpha_1} \cdot 7^{\alpha_3} \implies \frac{\varphi(n)}{n} = \frac{1}{2} \cdot \frac{6}{7} = \frac{3}{7} \Rightarrow\!\Leftarrow$
+      \item $n = 3^{\alpha_2} \cdot 7^{\alpha_3} \implies \frac{\varphi(n)}{n} = \frac{2}{3} \cdot \frac{6}{7} = \frac{4}{7} \Rightarrow\!\Leftarrow$
+      \item $n = 2^{\alpha_1} \cdot 3^{\alpha_2} \cdot 7^{\alpha_3} \implies \frac{\varphi(n)}{n} = \frac{1}{2} \cdot \frac{2}{3} \cdot \frac{6}{7} = \frac{2}{7} \ \checkmark$
+    \end{enumerate}
+    Dakle, $\frac{\varphi(n)}{n} = \frac{2}{7}$ za $n = 2^{\alpha_1} \cdot 3^{\alpha_2} \cdot 7^{\alpha_3}$, gdje su $\alpha_1, \alpha_2, \alpha_3 \in \mathbb{N}$.
+
+    \pagebreak
+
+    \part Znamo da je 11 najveći prosti faktor od $n$. Također, $p_i - 1 \in \{1, 2, 4, 6, 10\}$ pa 7 nije prosti faktor od $n$ te onda $p_i - 1 \in \{1, 2, 4, 10\}$ pa ni 3 nije prosti faktor od $n$. Imamo slučajeve:
+    \begin{enumerate}
+      \item $n = 2^{\alpha_1} \cdot 11^{\alpha_3} \implies \frac{\varphi(n)}{n} = \frac{1}{2} \cdot \frac{10}{11} = \frac{5}{11} \Rightarrow\!\Leftarrow$
+      \item $n = 5^{\alpha_2} \cdot 11^{\alpha_3} \implies \frac{\varphi(n)}{n} = \frac{4}{5} \cdot \frac{10}{11} = \frac{8}{11} \Rightarrow\!\Leftarrow$
+      \item $n = 2^{\alpha_1} \cdot 5^{\alpha_2} \cdot 11^{\alpha_3} \implies \frac{\varphi(n)}{n} = \frac{1}{2} \cdot \frac{4}{5} \cdot \frac{10}{11} = \frac{4}{11} \ \checkmark$
+    \end{enumerate}
+    Dakle, $\frac{\varphi(n)}{n} = \frac{4}{11}$ za $n = 2^{\alpha_1} \cdot 5^{\alpha_2} \cdot 11^{\alpha_3}$, gdje su $\alpha_1, \alpha_2, \alpha_3 \in \mathbb{N}$.
+  \end{parts}
+\end{solution}
+
+\question Dokažite da je $\varphi(3n) =
+\begin{cases}
+  3\varphi(n), \quad 3 \mid n\\
+  2\varphi(n), \quad 3 \nmid n
+\end{cases}$
+
+\begin{solution}
+  \begin{enumerate}
+    \item Neka je $n \in \mathbb{N}$ takav da $3 \mid n$, tj. $n =  3^{\alpha} \cdot p_1^{\alpha_1 - 1} \cdots p_k^{\alpha_k}$. tada imamo
+      \[
+        \varphi(n) = 3^{\alpha - 1} \cdot 2 \cdot p_1^{\alpha_1 - 1} \cdot (p_1 - 1) \cdots p_k^{\alpha_k} \cdot (p_k - 1)
+      \]
+      pa je
+      \[
+        \varphi(3n) = \varphi(3^{\alpha + 1} \cdot p_1^{\alpha_1 - 1} \cdots p_k^{\alpha_k}) = 3^{\alpha} \cdot 2 \cdot p_1^{\alpha_1 - 1} \cdot (p_1 - 1) \cdots p_k^{\alpha_k} \cdot (p_k - 1) = 3 \varphi(n)
+      \]
+    \item Neka je $n \in \mathbb{N}$ takav da $3 \nmid n$. Sada je $\text{nzd}(3, n) = 1$, pa je
+      \[
+        \varphi(3n) = \varphi(3 \cdot n) = 2 \cdot \varphi(n) = 2\varphi(n)
+      \]
+  \end{enumerate}
+\end{solution}
+
+\question Odredite sve prirodne brojeve $n$ takve da
+\begin{parts}
+  \part $\varphi(n) \mid 3n$
+  \part $\varphi(3n) \mid n$
+\end{parts}
+
+\begin{solution}
+  Neka je $n = p_1^{\alpha_1} \cdots p_k^{\alpha_k}$, tada je $\varphi(n) = p_1^{\alpha_1 - 1}(p_1 - 1) \cdots p_k^{\alpha_k - 1}(p_k - 1)$.
+  \begin{parts}
+    \part Imamo $\varphi(1) = \varphi(2) = 1$ pa imamo $\varphi(1) \mid 3 \cdot 1$ i $\varphi(2) \mid 3 \cdot 2$. Neka je $n > 2$, onda imamo $2 \mid \varphi(n) \implies 2 \mid n$. Dakle, $p_1 = 2$. Sada imamo $n = 2^{\alpha_1} \cdot p_2^{\alpha_2} \cdots p_k^{\alpha_k}$. Pretpostavimo sad da $n$ ima 2 neparna prosta faktora, $p_i$ i $p_j$. Tada imamo $2 \mid p_i - 1$ i $2 \mid p_j - 1$. Dakle, imamo $2^{\alpha_1 - 1} \cdot 2 \cdot 2 = 2^{\alpha_1 + 1} \mid 2^{\alpha_1 - 1} (p_i - 1) (p_j - 1)$, što je kontradikcija, jer bismo onda imali $2^{\alpha_1 + 1} \mid 3n$. Dakle, $n = 2^{\alpha_1} p^{\alpha_2}$ gdje je $p$ neparan prost broj. Dakle, imamo $\varphi(n) = 2^{\alpha_1 - 1} \cdot (p - 1) \cdot p^{\alpha_2 - 1} \mid 3 \cdot 2^{\alpha_1} \cdot (p - 1) \cdot p^{\alpha_2}$. Dakle, imamo $p - 1 \mid 3 \cdot 2 \cdot p$, tj. $6p \equiv 6 \equiv 0 \Mod{p - 1}$, tj. $p - 1 \mid 6$ pa imamo $p - 1 \in \{1, 2, 3, 6\}$. Dakle, $p \in \{3, 7\}$. Neka je $n = 2^{\alpha} \cdot 3^{\beta}$, tada imamo $\varphi(n) = 2^{\alpha - 1} \cdot 2 \cdot 3^{\beta - 1} = 2^{\alpha} \cdot 3^{\beta - 1} \mid 3 \cdot 2^{\alpha} \cdot 3^{\beta}$ što vrijedi za sve $\alpha, \beta \in \mathbb{N}$. Neka je sad $n = 2^{\alpha} \cdot 7^{\gamma}$, tada imamo $\varphi(n) = 2^{\alpha - 1} \cdot 6 \cdot 7^{\gamma - 1} = 2^{\alpha} \cdot 3 \cdot 7^{\gamma - 1} \mid 3 \cdot 2^{\alpha} \cdot 7^{\gamma}$ što vrijedi za sve $\alpha, \gamma \in \mathbb{N}$. Dakle, općenito rješenje su svi $n = 2^{\alpha} \cdot 3^{\beta s} \cdot 7^{\gamma (1 - s)}$ za $\alpha, \beta, \gamma \in \mathbb{N}_0$ i $s \in \{0, 1\}$.
+
+    \pagebreak
+
+    \part Imamo 2 slučaja:
+    \begin{enumerate}
+      \item Ako je $\text{nzd}(3, n) = 1$, tada je $\varphi(3n) = 2 \varphi(n) \mid n$ pa imamo $2 \mid n$, tj. $n = 2^{\alpha} \cdot p_1^{\alpha_1} \cdots p_k^{\alpha_2}$. Onda imamo $\varphi(3n) = 2^{\alpha} \cdot (p_1 - 1) \cdot p_1^{\alpha_1 - 1} \cdots p_k^{\alpha_2 - 1} \cdot (p_k - 1) \mid 2^{\alpha} \cdot p_1^{\alpha_1} \cdots p_k^{\alpha_2} = n$. To znači da $(p_1 - 1) \cdots (p_k - 1) \mid p_1 \cdots p_k$. Budući da su svi $p_i > 3$ znamo da se mogu zapisati kao $6x_i \pm 1$. Dakle, imamo
+        \begin{equation}
+          (6x_1 \pm 1) \cdots (6x_k \pm 1) = (6x_1 \pm 1 - 1) \cdots (6x_k \pm - 1) \cdot m \label{eq:7b}
+        \end{equation}
+        Ako je neki $p_i$ oblika $6x_i + 1$, onda je $p_i - 1 = 6x_i$ pa 6 dijeli desnu stranu, ali ne dijeli lijevu. Dakle, to je nemoguće. Ako je neki $p_i$ oblika $6x_i - 1$, onda je $p_i - 1 = 6x_i - 2$ pa 2 dijeli desnu stranu, ali ne dijeli lijevu. Dakle, to je nemoguće pa je $n = 2^{\alpha}$, $\alpha \in \mathbb{N}$.
+      \item Ako $3 \mid n$, onda imamo $2 \mid \varphi(3n) \mid n$ pa je $n = 2^{\alpha} \cdot 3^{\beta} \cdot p_1^{\alpha_1} \cdots p_k^{\alpha_k}$ i $\varphi(3n) = 2^{\alpha} \cdot 3^{\beta} \cdot (p_1 - 1) \cdot p_1^{\alpha_1 - 1} \cdots (p_k - 1) \cdot p_k^{\alpha_k - 1} \mid 2^{\alpha} \cdot 3^{\beta} \cdot p_1^{\alpha_1} \cdots p_k^{\alpha_k}$, tj. imamo $(p_1 - 1) \cdots (p_k - 1) \mid p_1 \cdots p_k$ te analogno prvom slučaju dobijemo da je $n = 2^{\alpha} \cdot 3^{\beta}$ za $\alpha, \beta \in \mathbb{N}$.
+    \end{enumerate}
+    Dakle, općenito rješenja su svi $n = 2^{\alpha} \cdot 3^{\beta}$ za $\alpha \in \mathbb{N}$ i $\beta \in \mathbb{N}_0$.
+  \end{parts}
+\end{solution}
+
+\question Dokažite da je $\displaystyle \sum_{\substack{k = 1\\ \text{nzd}(k, n) = 1}} k = \frac{n}{2} \varphi(n)$. \newline
+\underline{Uputa}: Zadanoj sumi pribrojite $\displaystyle \sum_{\substack{k = 1\\ \text{nzd}(k, n) = 1}} n - k$.
+
+\begin{solution}
+  \[
+    \sum_{\substack{k = 1\\ \text{nzd}(k, n) = 1}} k + \sum_{\substack{k = 1\\ \text{nzd}(k, n) = 1}} n - k = \sum_{\substack{k = 1\\ \text{nzd}(k, n) = 1}} n = \varphi(n) \cdot n
+  \]
+  Ako je $k \in \mathbb{N}$ takav da je $\text{nzd}(k, n) = 1$, tada je i $\text{nzd}(n - k, n) = 1$, pa je
+  \[
+    2 \sum_{\substack{k = 1\\ \text{nzd}(k, n) = 1}} k = \varphi(n) \cdot n \implies \sum_{\substack{k = 1\\ \text{nzd}(k, n) = 1}} k = \frac{n}{2} \cdot \varphi(n)
+  \]
+\end{solution}
+
+\question
+\begin{parts}
+  \part Izračunajte $\tau(16669800)$.
+  \part Koliko parnih djelitelja ima broj 16669800?
+  \part Koliko djelitelja broja 16669800 su potpuni kvadrati?
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part Imamo $16669800 = 2^3 \cdot 2083725 = 2^3 \cdot 3^5 \cdot 8575 = 2^3 \cdot 3^5 \cdot 5^2 \cdot 343 = 2^3 \cdot 3^5 \cdot 5^2 \cdot 7^3$. Dakle, $\tau(16669800) = (3 + 1) \cdot (5 + 1) \cdot (2 + 1) \cdot (3 + 1) = 4 \cdot 6 \cdot 3 \cdot 4 = 288$.
+    \part Broj neparnih djelitelja broja 16669800 je broj djelitelja broja 2083725, tj. $\tau(2083725) = (5 + 1) \cdot (2 + 1) \cdot (3 + 1) = 6 \cdot 3 \cdot 4 = 72$. Dakle, broj parnih djelitelja je $288 - 72 = 216$. To smo mogli dobiti i tako da moramo ukljičiti bar jedan faktor 2 u svaki djelitelj, pa imamo $3 \cdot 6 \cdot 3 \cdot 4 = 216$.
+    \part Broj djelitelja koji su potpuni kvadrati je $\left\lfloor \frac{3 + 1}{2} \right\rfloor \cdot \left\lfloor \frac{5 + 1}{2} \right\rfloor \cdot \left\lfloor \frac{2 + 1}{2} \right\rfloor \cdot \left\lfloor \frac{3 + 1}{2} \right\rfloor = 2 \cdot 3 \cdot 2 \cdot 2 = 24$.
+  \end{parts}
+\end{solution}
+
+\question
+\begin{parts}
+  \part Dokažite da je $\tau(n^2)$ neparan za svaki $n \in \mathbb{N}$.
+  \part Dokažite da je $\displaystyle \prod_{d \mid n} d = n^{\frac{\tau(n)}{2}}$ za svaki $n \in \mathbb{N}$.
+\end{parts}
+\underline{Uputa}: Promatrajte parove djelitelja $d$ i $\frac{n}{d}$.
+
+\begin{solution}
+  \begin{parts}
+    \part
+    \[
+      \tau(n^2) = \sum_{d \mid n^2} 1 = \sum_{\substack{d \mid n^2\\d < n}} 1 + 1 + \sum_{\substack{d \mid n^2\\d > n}} 1 = 2\tau(n) + 1 \equiv 1 \Mod{2}
+    \]
+    \part Ako je $n = m^2$, imamo
+    \[
+      \prod_{d \mid n} d = \prod_{\substack{d \mid n\\d < m}} d \cdot m \cdot \prod_{\substack{d \mid n\\d > m}} d = \prod_{\substack{d \mid n\\d < m}} d \cdot m \cdot \prod_{\substack{d \mid n\\d < m}} \frac{n}{d} = m \cdot \prod_{\substack{d \mid n\\d < m}} n = m \cdot n^{\frac{\tau(n) - 1}{2}} = n^{\frac{\tau(n)}{2}}
+    \]
+    Ako pak $n$ nije potpuni kvadrat, imamo:
+    \[
+      \prod_{d \mid n} d = \prod_{\substack{d \mid n\\d < \sqrt{n}}} d \cdot \prod_{\substack{d \mid n\\d > \sqrt{n}}} d = \prod_{\substack{d \mid n\\d < \sqrt{n}}} d \cdot \prod_{\substack{d \mid n\\d < \sqrt{n}}} \frac{n}{d} = \prod_{\substack{d \mid n\\d < \sqrt{n}}} n = n^{\frac{\tau(n)}{2}}
+    \]
+  \end{parts}
+\end{solution}
+
+\question
+\begin{parts}
+  \part Dokažite da je $\sigma(n)$ neparan broj ako je $n$ potencija broja 2.
+  \part Odredite sve prirodne brojeve $n$ takve da je $\sigma(n) $ neparan broj.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part Neka je $n=2^k$, tada je
+    \[
+      \sigma(n) = \frac{2^{k + 1} - 1}{2 - 1} = 2^{k + 1} - 1 \equiv 1 \Mod{2}
+    \]
+    \part Ako je $p$ neparan prost broj, onda je $\sigma(p^{\alpha}) = \sum_{k = 0}^{\alpha} p^k \equiv \sigma(p^{\alpha}) = \sum_{k = 0}^{\alpha} 1 \equiv \alpha + 1 \Mod{2}$. Dakle, $\sigma(p^{\alpha})$ je neparan ako je $\alpha$ paran, tj. $p^{\alpha}$ je potpuni kvadrat. Stoga, općenito $\sigma(n)$ je neparan ako i samo ako je $n$ potpuni kvadrat ili dvostruki potpuni kvadrat.
+  \end{parts}
+\end{solution}
+
+\pagebreak
+
+\question Dokažite da je $\displaystyle \sum_{d \mid n} \frac{1}{d} = \frac{\sigma(n)}{n}$. \newline
+\underline{Uputa}: Uočite da je funkcija $f(n) = \frac{1}{n}$ multiplikativna.
+
+\begin{solution}
+  Očito je $f(1) = 1$, a ako imamo $m, n \in \mathbb{Z}$ takve da je $\text{nzd}(m, n) = 1$, tada je
+  \[
+    f(mn) = \frac{1}{mn} = \frac{1}{m} \cdot \frac{1}{n} = f(m) \cdot f(n)
+  \]
+  pa je $f(n)$ multiplikativna funkcija. Sada je i $\sum_{d \mid n} f(n)$ multiplikativna funkcija. Stoga je dovoljno provjeriti tvrdnju za $n = p^k$, gdje je $p$ prost broj. Imamo
+  \[
+    \sum_{d \mid p^k} \frac{1}{d} = 1 + \frac{1}{p} + \cdots + \frac{1}{p^k} = \frac{1 - \frac{1}{p^{k+1}}}{1 - \frac{1}{p}} = \frac{p^{k+1} - 1}{p^k(p - 1)} = \frac{1}{p^k} \cdot \frac{p^{k+1} - 1}{p - 1} = \frac{1}{p^k} \cdot \sigma(p^k) = \frac{\sigma(p^k)}{p^k}
+  \]
+  Dakle, tvrdnja vrijedi za sve $n \in \mathbb{N}$.
+\end{solution}
+
+\end{questions}
+
+\end{document}
