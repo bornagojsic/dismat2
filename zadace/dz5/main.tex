@@ -1,0 +1,312 @@
+\documentclass{exam}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{tikz}
+\makeatletter
+\newcommand\mathcircled[1]{%
+  \mathpalette\@mathcircled{#1}%
+}
+\newcommand\@mathcircled[2]{%
+  \tikz[baseline=(math.base)] \node[draw,circle,inner sep=1pt] (math) {$\m@th#1#2$};%
+}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[makeroom]{cancel}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+
+\renewcommand{\thepartno}{\thequestion.\alph{partno}}
+\renewcommand{\partlabel}{\alph{partno})}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+\def \brojZadace {5}
+
+\lhead{DISMAT 2 - Zadaća \brojZadace\\}
+\rhead{Borna Gojšić\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup
+\centering
+\LARGE Diskretna matematika 2\\
+\Large Zadaća \brojZadace\\
+\large \today\\
+\large Borna Gojšić\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Rj:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+\question Odredite red od
+\begin{parts}
+  \part 5 modulo 17,
+  \part 7 modulo 29,
+\end{parts}
+Je li 5 primitivni korijen modulo 17? Je li 7 primitivni korijen modulo 29?
+
+\begin{solution}
+  \begin{parts}
+    \part Neka je $d$ red od 5 modulo 17. Tada imamo $d \mid \varphi(17) = 16 = 2^4$.
+    \[
+      5^2 \equiv 25 \equiv 8 \Mod{17}, \quad 5^4 \equiv 8^2 \equiv 64 \equiv 13 \equiv -4 \Mod{17}
+    \]
+    \[
+      5^8 \equiv (-4)^2 \equiv 16 \equiv -1 \Mod{17}
+    \]
+    Dakle, red od 5 modulo 17 je 16, tj. 5 je primitivni korijen modulo 17.
+    \part Neka je $d$ red od 7 modulo 29. Tada imamo $d \mid \varphi(29) = 28 = 2^2 \cdot 7$.
+    \[
+      7^2 \equiv 49 \equiv 20 \equiv -9 \Mod{29}, \quad 7^4 \equiv (-9)^2 \equiv 81 \equiv 23 \equiv -6 \Mod{29}
+    \]
+    \[
+      7^7 \equiv (-6) \cdot (-9) \cdot 7 \equiv 54 \cdot 7 \equiv 25 \cdot 7 \equiv -4 \cdot 7 \equiv -28 \equiv 1 \Mod{29}
+    \]
+    Dakle, red od 7 modulo 29 je 7.
+  \end{parts}
+\end{solution}
+
+\question Neka je $p$ neparan prost broj i $n = 3^p + 1$. Odredite red od 3 modulo $n$.
+
+\begin{solution}
+  \[
+    3^{p} \equiv -1 \Mod{n} \implies 3^{2p} \equiv 1 \Mod{n}
+  \]
+  Dakle, red od 3 modulo $n$ je $2p$.
+\end{solution}
+
+\question Neka je $p$ prost broj te neka je red od $a$ modulo $p$ jednak 8. Ako je $x = a^2$, $y = a^3 - a$, $z = a^3 + a$, dokažite da je $x^2 \equiv -1 \Mod{p}$, $y^2 \equiv 2 \Mod{p}$, $z^2 \equiv -2 \Mod{p}$.
+
+\begin{solution}
+  Ako je $a^8 \equiv 1 \Mod{p}$, onda imamo $(a^4)^2 - 1 = (a^4 - 1) (a^4 + 1) = k p$. Imamo $\text{nzd}(a^4 - 1, a^4 + 1) \mid 2$. Budući da je red od $a$ modulo $p$ jednak 8 i $p$ je neparan prost broj, znamo da je $p \nmid a^4 - 1$. Dakle, imamo $p \mid a^4 + 1$, tj. $a^4 \equiv -1 \Mod{p}$. Odavde imamo $x^2 = (a^2)^2 \equiv -1 \Mod{p}$. Nadalje, imamo:
+  \[
+    (a^3 \pm a)^2 = a^6 \pm 2a^4 + a^2 \equiv a^2 (a^4 + 1) \pm 2a^4 \equiv a^2 \cdot 0 \pm 2 \cdot (-1) \equiv \mp 2 \Mod{p}
+  \]
+  Ovavde trivijalno slijedi $y^2 \equiv 2 \Mod{p}$ i $z^2 \equiv -2 \Mod{p}$
+\end{solution}
+
+\question Neka je $p$ prost broj koji ne dijeli $a$, te neka je red od $a$ modulo $p$ jednak 3. Dokažite sljedeće tvrdnje:
+\begin{parts}
+  \part $p \equiv 1 \Mod{3}$,
+  \part $a^2 + a + 1 \equiv 0 \Mod{p}$,
+  \part $(2a + 1)^2 \equiv -3 \Mod{p}$,
+  \part red od $a + 1$ modulo $p$ jednak je 6.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part Budući da je red $d$ od $a$ modulo $p$ jednak 3, imamo $d \mid \phi(p) = p - 1$. Dakle, $p - 1 = 3k$ za neki $k \in \mathbb{N}$, tj. $p \equiv 1 \Mod{3}$.
+    \part
+    \[
+      a^{3} - 1 \equiv 0 \Mod{p} \implies (a - 1)(a^2 + a + 1) \equiv 0 \Mod{p}
+    \]
+    Budući da je red od $a$ modulo $p$ jednak 3, imamo $a - 1 \not\equiv 0 \Mod{p}$. Dakle, $a^2 + a + 1 \equiv 0 \Mod{p}$.
+    \part
+    \[
+      (2a + 1)^2 = 4a^2 + 4a + 1 = 4(a^2 + a + 1) - 3 \equiv -3 \Mod{p}
+    \]
+    \part
+    \[
+      (a + 1)^2 \equiv a^2 + 2a + 1 \equiv 2(a^2 + a + 1) - a - 1 \equiv - a - 1 \Mod{p}
+    \]
+    Dakle, budući da red od $a$ modulo $p$ nije 2 imamo $a \not\equiv -1 \Mod{p}$, tj.
+    \[
+      (a + 1)^2 \equiv - a - 1 \not\equiv 0 \Mod{p}
+    \]
+    Nadalje,
+    \[
+      (a + 1)^3 \equiv a^3 + 3a^2 + 3a + 1 \equiv 1 + 3(a^2 + a + 1) - 2 \equiv -1 \Mod{p}
+    \]
+    Sada je očito da je:
+    \[
+      (a + 1)^6 \equiv ((a + 1)^3)^2 \equiv (-1)^2 \equiv 1 \Mod{p}
+    \]
+    Dakle, red od $a + 1$ modulo $p$ je 6.
+  \end{parts}
+\end{solution}
+
+\question
+\begin{parts}
+  \part Koliko ima primitivnih korijena modulo 43? Odredite najmanji medu njima.
+  \part Koliko ima primitivnih korijena modulo 59? Odredite najmanji medu njima.
+\end{parts}
+
+\begin{solution}
+  Ako je $p$ prost broj, onda postoji točno $\varphi(p - 1)$ primitivnih korijena modulo $p$.
+  \begin{parts}
+    \part Dakle, postoji $\varphi(42) = \varphi(2 \cdot 3 \cdot 7) = 1 \cdot 2 \cdot 6 = 12$ primitivnih korijena modulo 43. Nađimo sad najmanji od njih:
+    \[
+      2^2 \equiv 4, \quad 2^3 \equiv 8, \quad 2^6 \equiv 64 \equiv 21, \quad 2^7 \equiv 42 \equiv -1 \Mod{43} \implies 2^{14} \equiv 1 \Mod{43}
+    \]
+    \[
+      3^2 \equiv 9, \quad 3^3 \equiv 27, \quad 3^6 \equiv 729 \equiv -2, \quad 3^7 \equiv -6, \quad 3^{14} \equiv 36 \equiv -7
+    \]
+    \[
+      3^{21} \equiv 42 \equiv -1 \Mod{43}
+    \]
+    Dakle, najmanji primitivni korijen modulo 43 je 3.
+
+    \part Dakle, postoji $\varphi(58) = \varphi(2 \cdot 29) = 1 \cdot 28 = 28$ primitivnih korijena modulo 59.
+    \[
+      2^{29} \equiv 2 \cdot (4)^{19} \equiv 8 \cdot 64^{6} \equiv 8 \cdot 5^6 \equiv 8 \cdot 125^2 \equiv 8 \cdot 7^2 \equiv 8 \cdot 49 \equiv 8 \cdot -10 \equiv -80 \not\equiv 1 \Mod{59}
+    \]
+    Dakle, najmanji primitivni korijen modulo 59 je 2.
+  \end{parts}
+\end{solution}
+
+\question Odredite sve primitivne korijene
+\begin{parts}
+  \part modulo 31,
+  \part modulo 23.
+\end{parts}
+
+\begin{solution}
+  Znamo da $d \mid \varphi(p) = p - 1$ i znamo da postoji točno $\varphi(p - 1)$ primitivnih korijena modulo $p$. Također, neka je $a$ primitivni korijen modulo $p$ i $n \in \mathbb{N}$ takav da je $\text{nzd}(n, \varphi(p)) = 1$. Trivijalno vidimo da je $(a^{n})^{\varphi(p)} \equiv 1^{n} \equiv 1 \Mod{p}$. Preptostavimo da postoji $m \leq \varphi(p)$ takav da je $(a^n)^m \equiv a^{mn} \equiv 1 \Mod{p}$. Budući da je red od $a$ modulo $p$ jednak $\varphi(p)$, imamo $\varphi(p) \mid mn$. Budući da je $\text{nzd}(n, \varphi(p)) = 1$, imamo $\varphi(p) \mid m$, tj. $m \geq \varphi(p)$ pa imamo $m = \varphi(p)$. Dakle, tada je i $a^{n}$ primitivni korijen modulo $p$.
+  \begin{parts}
+    \part Dakle, $d \mid 30 = 2 \cdot 3 \cdot 5$. Dakle, $d \in \{1, 2, 3, 5, 6, 10, 15, 30\}$ i imamo $\varphi(30) = 1 \cdot 2 \cdot 4 = 8$ primitivnih korijena modulo 31.
+
+    \[
+      2^5 \equiv 32 \equiv 1 \Mod{31}
+    \]
+    2 nije primitivni korijen modulo 31 pa ne moramo provjeravati brojeve oblike $2^{\alpha}$.
+    \[
+      3^2 \equiv 9, \quad 3^3 \equiv 27 \equiv -4, \quad 3^5 \equiv -36 \equiv -5, \quad 3^{6} \equiv 16, \quad 3^{10} \equiv 25, \quad 3^{15} \equiv 30 \Mod{31}
+    \]
+    Dakle, 3 je primitivni korijen modulo 31.
+    \[
+      3^{7} \equiv 16 \cdot 3 \equiv 48 \equiv 17, \quad 3^{11} \equiv -6 \cdot 3 \equiv 13, \quad 3^{13} \equiv -6 \cdot -4 \equiv 24, \quad 3^{17} \equiv -1 \cdot 9 \equiv 22 \Mod{31}
+    \]
+    \[
+      3^{19} \equiv -1 \cdot (-4) \cdot 3 \equiv 12, \quad 3^{23} \equiv 12 \cdot -4 \cdot 3 \equiv 36 \cdot -4 \equiv -20 \equiv 11 \Mod{31}
+    \]
+    \[
+      3^{29} \equiv 12 \cdot -6 \equiv -72 \equiv 21 \Mod{31}
+    \]
+
+    Dakle, svi primitivni korijeni modulo 31 su 3, 11, 12, 13, 17, 21, 22 i 24.
+
+    \part Dakle, $d \mid 22 = 2 \cdot 11$. Dakle, $d \in \{1, 2, 11, 22\}$ i imamo $\varphi(22) = 10$ primitivnih korijena modulo 23.
+    \[
+      2^{11} \equiv 2 \cdot 9^{2} \equiv 2 \cdot 81 \equiv 2 \cdot 12 \equiv 24 \equiv 1 \Mod{23}
+    \]
+    \[
+      3^{11} \equiv 3 \cdot 9 \cdot 9^4 \equiv 27 \cdot 12^2 \equiv 4 \cdot 144 \equiv 4 \cdot 6 \equiv 24 \equiv 1 \Mod{23}
+    \]
+    Ne moramo provjeravati $n = 2^{\alpha} 3^{\beta}$ jer je $n^{11} \equiv 1 \Mod{23}$.
+    \[
+      5^2 \equiv 25 \equiv 2, \quad 5^{11} \equiv 5 \cdot 25 \cdot 25^4 \equiv 10 \cdot 4^2 \equiv 10 \cdot 16 \equiv 160 \equiv 22 \Mod{23} \quad \checkmark
+    \]
+    5 je primitivni korijen modulo 23. Dakle, svi ostali primitivni korijeni su oblika $5^{n}$ gdje je $\text{nzd}(n, 22) = 1$. Dakle, imamo
+    \[
+      5^3 \equiv 25 \cdot 5 \equiv 10, \quad 5^{5} \equiv 10 \cdot 2 \equiv 20, \quad 5^{7} \equiv 20 \cdot 10 \equiv -30 \equiv 17 \Mod{23}
+    \]
+    \[
+      5^{9} \equiv 17 \cdot 2 \equiv 34 \equiv 11, \quad 5^{13} \equiv 11 \cdot 2 \cdot 2 \equiv -1 \cdot 2 \equiv 21, \quad 5^{15} \equiv -2 \cdot 2 \equiv -4 \equiv 19 \Mod{23}
+    \]
+    \[
+      5^{17} \equiv -4 \cdot 2 \equiv -8 \equiv 15, \quad 5^{19} \equiv -8 \cdot 2 \equiv -16 \equiv 7, \quad 5^{21} \equiv 7 \cdot 2 \equiv 14 \Mod{23}
+    \]
+    Dakle, svi primitivni korijeni modulo 23 su 5, 7, 10, 11, 14, 15, 17, 19, 20 i 21.
+  \end{parts}
+\end{solution}
+
+\question Odredite sve proste module koji imaju točno 32 primitivna korijena.
+
+\begin{solution}
+  Ako je $p$ prost broj, onda postoji točno $\varphi(p - 1)$ primitivnih korijena modulo $p$. Dakle, u ovom slučaju imamo $\varphi(p - 1) = 32 = 2^5$. Neka je $n = p - 1 = p_1^{\alpha_1} \cdots p_k^{\alpha_k}$. Tada imamo $\varphi(n) = (p_1 - 1) p_1^{\alpha_1 - 1} \cdots (p_k - 1) p_k^{\alpha_k - 1}$. Iz $p_i - 1 \mid 32$ imamo $p_i - 1 \in \{1, 2, 4, 8, 16, 32\}$, tj. $p_i \in \{2, 3, 5, 17\}$. Imamo par slučejeva:
+  \begin{enumerate}
+    \item Ako je $p_i = 17$, onda imamo $n = 17 \cdot k$ pa je $\varphi(n) = 16 \cdot \varphi(k) = 32$, tj. $\varphi(k) = 2$ pa je $k \in \{3, 4, 6\}$, tj. $n \in \{51, 68, 102\}$. Dakle, $p \in \{52, 69, 103\}$, a od njih je samo 103 prost.
+
+    \item Ako je $n = 5 \cdot 3 \cdot 2^{\alpha}$, imamo $\varphi(n) = 4 \cdot 2^{\alpha} = 32$, tj. $\alpha = 3$ pa je $n = 120$. Dakle, $p = 121$, ali to nije prost broj.
+
+    \item Ako je $n = 5 \cdot 2^{\alpha}$, imamo $\varphi(n) = 4 \cdot 2^{\alpha - 1} = 32$, tj. $\alpha = 4$ pa je $n = 80$. Dakle, $p = 81$, ali to nije prost broj.
+
+    \item Ako je $n = 3 \cdot 2^{\alpha}$, imamo $\varphi(n) = 2^{\alpha} = 32$, tj. $\alpha = 5$ pa je $n = 96$. Dakle, $p = 97$ što je prost broj.
+
+    \item Ako je $n = 2^{\alpha}$, onda je $\varphi(n) = 2^{\alpha - 1} = 32$, tj. $\alpha = 6$ pa je $n = 64$. Dakle, $p = 65$, ali to nije prost broj.
+  \end{enumerate}
+  Dakle, svi prosti brojevi koji imaju točno 32 primitivna korijena su 97 i 103.
+\end{solution}
+
+\question Riješite pomoću indeksa sljedeće kongruencije:
+\begin{parts}
+  \part $2 x^{16} \equiv 5 \Mod{31}$,
+  \part $36 x^{15} \equiv 26 \Mod{37}$,
+  \part $41 x^{9} \equiv 22 \Mod{43}$,
+  \part $15 x^{6} \equiv 11 \Mod{53}$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part 3 je primitivni korijen modulo 31. Dakle, imamo:
+    \[
+      \text{ind}_3 2 + 16 \cdot \text{ind}_3 x \equiv \text{ind}_3 5 \Mod{30} \implies 24 + 16 \cdot \text{ind}_3 x \equiv 20 \Mod{30}
+    \]
+    \[
+      16 \cdot \text{ind}_3 x \equiv 26 \Mod{30} \implies 8 \cdot \text{ind}_3 x \equiv 13 \Mod{15} \implies \text{ind}_3 x \equiv 11 \Mod{15}
+    \]
+    Dakle, $\text{ind}_3 x \in \{11, 26\}$, tj. $x \equiv 13, 18 \Mod{31}$.
+    \part 2 je primitivni korijen modulo 37. Dakle, imamo:
+    \[
+      \text{ind}_2 (-1) + 15 \cdot \text{ind}_2 x \equiv \text{ind}_2 26 \Mod{36} \implies 18 + 15 \cdot \text{ind}_2 x \equiv 12 \Mod{36}
+    \]
+    \[
+      15 \cdot \text{ind}_2 x \equiv 30 \Mod{36} \implies 5 \cdot \text{ind}_2 x \equiv 10 \Mod{12}
+    \]
+    Budući da je $\text{nzd}(5, 12) = 1$, imamo $\text{ind}_2 x \equiv 2 \Mod{12}$, tj. $\text{ind}_2 x \equiv 2, 14, 26 \Mod{36}$. Dakle, $x \equiv 3, 4, 30 \Mod{37}$.
+    \part 3 je primitivni korijen modulo 43. Dakle, imamo:
+    \[
+      \text{ind}_3 (-1) + \text{ind}_3 (2) + 9 \cdot \text{ind}_3 x \equiv \text{ind}_3 22 \Mod{42} \implies 21 + 27 + 9 \cdot \text{ind}_3 x \equiv 15 \Mod{42}
+    \]
+    \[
+      9 \cdot \text{ind}_3 x \equiv 9 \Mod{42} \implies 3 \cdot \text{ind}_3 x \equiv 3 \Mod{14}
+    \]
+    Budući da je $\text{nzd}(3, 14) = 1$, imamo $\text{ind}_3 x \equiv 1 \Mod{14}$, tj. $\text{ind}_3 x \equiv 1, 15, 29 \Mod{42}$. Dakle, $x \equiv 3, 18, 22 \Mod{43}$.
+    \part 2 je primitivni korijen modulo 53. Dakle, imamo:
+    \[
+      \text{ind}_2 15 + 6 \cdot \text{ind}_2 x \equiv \text{ind}_2 11 \Mod{52} \implies 12 + 6 \cdot \text{ind}_2 x \equiv 6 \Mod{52}
+    \]
+    \[
+      6 \cdot \text{ind}_2 x \equiv -6 \Mod{52} \implies 3 \cdot \text{ind}_2 x \equiv -3 \Mod{26}
+    \]
+    Dakle, $\text{ind}_2 x \equiv 25 \Mod{26}$, tj. $\text{ind}_2 x \equiv 25, 51 \Mod{52}$. Dakle, $x \equiv 26, 27 \Mod{53}$.
+  \end{parts}
+\end{solution}
+
+\question Riješite pomoću indeksa sljedeće kongruencije:
+\begin{parts}
+  \part $7^x \equiv 6 \Mod{17}$,
+  \part $17^x \equiv 27 \Mod{31}$,
+  \part $28^x \equiv 27 \Mod{43}$,
+  \part $10^x \equiv 8 \Mod{59}$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part 3 je primitivni korijen modulo 17. Dakle, imamo:
+    \[
+      x \, \text{ind}_3 7 \equiv \text{ind}_3 6 \Mod{16} \implies 11 x \equiv 15 \Mod{16} \implies x \equiv -3 \equiv 13 \Mod{16}
+    \]
+    jer je $3^{11} \equiv 7 \Mod{17}$ i $3^{15} \equiv 6 \Mod{17}$.
+    \part 3 je primitivni korijen modulo 31. Dakle, imamo:
+    \[
+      x \, \text{ind}_3 17 \equiv \text{ind}_3 27 \Mod{30} \implies 7 x \equiv 3 \Mod{30} \implies x \equiv 9 \Mod{30}
+    \]
+    \part 3 je primitivni korijen modulo 43. Dakle, imamo:
+    \[
+      x \, \text{ind}_3 28 \equiv \text{ind}_3 27 \Mod{42} \implies 5 x \equiv 3 \Mod{42} \implies x \equiv 9 \Mod{42}
+    \]
+    \part 2 je primitivni korijen modulo 59. Dakle, imamo:
+    \[
+      x \, \text{ind}_2 10 \equiv \text{ind}_2 8 \Mod{58} \implies 7x \equiv 3 \Mod{58} \implies x \equiv 17 \Mod{58}
+    \]
+  \end{parts}
+\end{solution}
+
+\end{questions}
+
+\end{document}
