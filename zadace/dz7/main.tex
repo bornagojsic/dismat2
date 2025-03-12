@@ -1,0 +1,811 @@
+\documentclass{exam}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{tikz}
+\makeatletter
+\newcommand\mathcircled[1]{%
+  \mathpalette\@mathcircled{#1}%
+}
+\newcommand\@mathcircled[2]{%
+  \tikz[baseline=(math.base)] \node[draw,circle,inner sep=1pt] (math) {$\m@th#1#2$};%
+}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[makeroom]{cancel}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+
+\renewcommand{\thepartno}{\thequestion.\alph{partno}}
+\renewcommand{\partlabel}{\alph{partno})}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+\def \brojZadace {7}
+
+\lhead{DISMAT 2 - Zadaća \brojZadace\\}
+\rhead{Borna Gojšić\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup
+\centering
+\LARGE Diskretna matematika 2\\
+\Large Zadaća \brojZadace\\
+\large \today\\
+\large Borna Gojšić\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Rj:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+\question Odredite sve Pitagorine trokute sa stranicom duljine:
+\begin{parts}
+  \parbox{.05\linewidth}{
+    \part 35
+  }\hspace*{1cm}
+  \parbox{.05\linewidth}{
+    \part 55
+  }\hspace*{1cm}
+  \parbox{.05\linewidth}{
+    \part 65
+  }\hspace*{1cm}
+  \parbox{.05\linewidth}{
+    \part 77
+  }\hspace*{1cm}
+  \parbox{.05\linewidth}{
+    \part 143
+  }\hspace*{1cm}
+\end{parts}
+
+\begin{solution}
+  Sve Pitagorine trojke su dane identitetom:
+  \[
+    [d(m^2-n^2)]^2 + [2dmn]^2 = [d(m^2+n^2)]^2
+  \]
+  gdje su $d, m, n \in \mathbb{N}$, $m > n$ i $m$ i $n$ su relativno prosti i različite parnosti.
+  \begin{parts}
+    \part Budući da je $35 = 5 \cdot 7$, imamo tri mogućnosti:
+    \begin{enumerate}
+      \item Ako je $d = 1$, onda imamo $m^2 + n^2 \neq 35$ jer je $35 \not\equiv 1 \Mod{4}$. Dakle, $m^2 - n^2 = 35$ pa je $m + n = 35$ i $m - n = 1$ ili je $m + n = 7$ i $m - n = 5$. Dakle, $m = 18$ i $n = 17$ ili $m = 6$ i $n = 1$ pa dobivamo trojke (35, 612, 613) i (35, 12, 37).
+
+      \item Ako je $d = 5$, onda imamo $m^2 + n^2 \neq 7$ jer je $7 \not\equiv 1 \Mod{4}$. Dakle, $m^2 - n^2 = 7$ pa je $m - n = 7$ i $m + n = 1$. Dakle, $m = 4$ i $n = 3$ pa dobivamo trojku (35, 120, 125).
+
+      \item Ako je $d = 7$, onda možemo imati ili $m^2 + n^2 = 5$ ili $m^2 - n^2 = 5$. U prvom slučaju dobijemo $m = 2$ i $n = 1$, a u drugom $m = 3$ i $n = 2$. Dakle, dobivamo dvije trojke: (21, 28, 35) i (35, 84, 91).
+    \end{enumerate}
+
+    \part Budući da je $55 = 5 \cdot 11$, imamo tri mogućnosti:
+    \begin{enumerate}
+      \item Ako je $d = 1$, onda imamo $m^2 + n^2 \neq 55$ jer je $55 \not\equiv 1 \Mod{4}$. Dakle, $m^2 - n^2 = 55$ pa je $m + n = 55$ i $m - n = 1$ ili je $m + n = 11$ i $m - n = 5$. Dakle, $m = 28$ i $n = 27$ ili $m = 8$ i $n = 3$ pa dobivamo trojke (55, 1512, 1513) i (55, 48, 73).
+
+      \item Ako je $d = 5$, onda imamo $m^2 + n^2 \neq 11$ jer je $11 \not\equiv 1 \Mod{4}$. Dakle, $m^2 - n^2 = 11$ pa je $m - n = 11$ i $m + n = 1$. Dakle, $m = 6$ i $n = 5$ pa dobivamo trojku (55, 300, 305).
+
+      \item Ako je $d = 11$, onda možemo imati ili $m^2 + n^2 = 5$ ili $m^2 - n^2 = 5$. U prvom slučaju dobijemo $m = 2$ i $n = 1$, a u drugom $m = 3$ i $n = 2$. Dakle, dobivamo dvije trojke: (33, 44, 55) i (55, 132, 143).
+    \end{enumerate}
+
+    \part Budući da je $65 = 5 \cdot 13$, imamo tri mogućnosti:
+    \begin{enumerate}
+      \item Ako je $d = 1$, onda imamo $m^2 + n^2 = 65$ ili $m^2 - n^2 = 65$. U prvom slučaju dobijemo $m = 8$ i $n = 1$ ili $m = 7$ i $n = 4$, a u drugom $m = 33$ i $n = 32$ ili $m = 9$ i $n = 4$. Dakle, dobivamo četiri trojke: (63, 16, 65), (33, 56, 65), (65, 2112, 2113) i (65, 72, 97).
+
+      \item Ako je $d = 5$, onda imamo $m^2 + n^2 = 13$ ili $m^2 - n^2 = 13$. U prvom slučaju dobijemo $m = 3$ i $n = 2$, a u drugom $m = 7$ i $n = 6$. Dakle, dobivamo dvije trojke: (25, 60, 65) i (65, 420, 425).
+
+      \item Ako je $d = 13$, onda imamo $m^2 + n^2 = 5$ ili $m^2 - n^2 = 5$. U prvom slučaju dobijemo $m = 2$ i $n = 1$, a u drugom $m = 3$ i $n = 2$. Dakle, dobivamo dvije trojke: (39, 52, 65) i (65, 156, 169).
+    \end{enumerate}
+
+    \part Budući da je $77 = 7 \cdot 11$, imamo tri mogućnosti:
+    \begin{enumerate}
+      \item Ako je $d = 1$, onda imamo $m^2 + n^2 \neq 77$ jer $77 = 7 \cdot 11$ i $7 \equiv 3 \Mod{4}$. Dakle, $m^2 - n^2 = 77$ pa je $m + n = 77$ i $m - n = 1$ ili je $m + n = 11$ i $m - n = 7$. Dakle, $m = 39$ i $n = 38$ ili $m = 9$ i $n = 2$ pa dobivamo trojke (77, 2964, 2965) i (77, 36, 85).
+
+      \item Ako je $d = 7$, onda imamo $m^2 + n^2 \neq 11$ jer $11 \equiv 3 \Mod{4}$. Dakle, $m^2 - n^2 = 11$ pa je $m - n = 11$ i $m + n = 1$. Dakle, $m = 6$ i $n = 5$ pa dobivamo trojku (77, 420, 427).
+
+      \item Ako je $d = 11$, onda imamo $m^2 + n^2 \neq 7$ jer $7 \equiv 3 \Mod{4}$. Dakle, $m^2 - n^2 = 7$ pa je $m - n = 7$ i $m + n = 1$. Dakle, $m = 4$ i $n = 3$ pa dobivamo trojku (77, 264, 275).
+    \end{enumerate}
+
+    \part Budući da je $143 = 11 \cdot 13$, imamo tri mogućnosti:
+    \begin{enumerate}
+      \item Ako je $d = 1$, onda imamo $m^2 + n^2 \neq 143$ jer $143 = 11 \cdot 13$ i $11 \equiv 3 \Mod{4}$. Dakle, $m^2 - n^2 = 143$ pa je $m + n = 143$ i $m - n = 1$ ili je $m + n = 13$ i $m - n = 11$. Dakle, $m = 72$ i $n = 71$ ili $m = 12$ i $n = 1$ pa dobivamo trojke (143, 10224, 10225) i (143, 24, 145).
+      \item Ako je $d = 11$, onda imamo $m^2 + n^2 = 13$ ili $m^2 - n^2 = 13$. Dakle, imamo $m = 3$ i $n = 2$ ili $m = 7$ i $n = 6$ pa dobivamo trojke (55, 132, 143) i (143, 924, 935).
+      \item Ako je $d = 13$, onda imamo $m^2 + n^2 \neq 11$ i $m^2 - n^2 \neq 11$. Dakle, imamo $m = 6$ i $n = 5$ pa dobivamo trojku (143, 780, 793).
+    \end{enumerate}
+  \end{parts}
+\end{solution}
+
+\question Odredite sve Pitagorine trokute sa stranicom duljine:
+\begin{parts}
+  \parbox{.05\linewidth}{
+    \part 26
+  }\hspace*{1cm}
+  \parbox{.05\linewidth}{
+    \part 28
+  }\hspace*{1cm}
+  \parbox{.05\linewidth}{
+    \part 36
+  }\hspace*{1cm}
+  \parbox{.05\linewidth}{
+    \part 56
+  }\hspace*{1cm}
+  \parbox{.05\linewidth}{
+    \part 116
+  }\hspace*{1cm}
+\end{parts}
+
+\begin{solution}
+  Sve Pitagorine trojke su dane identitetom:
+  \[
+    [d(m^2-n^2)]^2 + [2dmn]^2 = [d(m^2+n^2)]^2
+  \]
+  gdje su $d, m, n \in \mathbb{N}$, $m > n$ i $m$ i $n$ su relativno prosti i različite parnosti.
+
+  \begin{parts}
+    \part Budući da je $26 = 2 \cdot 13$, imamo dvije mogućnosti jer $d$ ne može biti 13 niti 26:
+    \begin{enumerate}
+      \item Ako je $d = 1$, onda imamo $2mn = 26$ pa je $mn = 13$. Dakle, $m = 13$, $n = 1$, ali onda nisu različite parnosti pa to nije rješenje.
+      \item Ako je $d = 2$, onda imamo $m^2 + n^2 = 13$ ili $m^2 - n^2 = 13$ pa dobivamo rješenja $m = 3$ i $n = 2$ te $m = 7$ i $n = 6$ pa dobivamo trojke (10, 24, 26) i (26, 168, 170).
+    \end{enumerate}
+
+    \part Budući da je $28 = 2^2 \cdot 7$, imamo tri mogućnosti jer $d$ ne može biti 2, ni 14, niti 28:
+    \begin{enumerate}
+      \item Ako je $d = 1$, onda imamo ili $2mn = 28$ ili $m^2 - n^2 = 28$. U prvom slučaju dobivamo $m = 14$ i $n = 1$ te $m = 7$ i $n = 2$, a u drugom $m = 8$ i $n = 6$, ali nisu različite parnosti pa dobivamo samo dvije trojke (195, 28, 197) i (45, 28, 53).
+      \item Ako je $d = 4$, onda imamo $m^2 - n^2 = 7$ pa je $m = 4$ i $n = 3$ pa dobivamo trojku (28, 96, 100).
+      \item Ako je $d = 7$, onda imamo $2mn = 4$ pa je $m = 2$ i $n = 1$ pa dobivamo trojku (21, 28, 35).
+    \end{enumerate}
+
+    \pagebreak
+
+    \part Budući da je $36 = 2^2 \cdot 3^2$, imamo:
+    \begin{enumerate}
+      \item Ako je $d = 1$, onda imamo ili $2mn = 36$ ili $m^2 - n^2 = 36$. U prvom slučaju dobivamo $m = 18$ i $n = 1$ ili $m = 9$ i $n = 2$, a u drugom $m = 10$ i $n = 8$ pa dobivamo trojke (323, 36, 325) i (77, 36, 85).
+      \item Ako je $d = 3$, onda imamo $2mn = 12$ ili $m^2 - n^2 = 12$. U prvom slučaju dobivamo $m = 6$ i $n = 1$ ili $m = 3$ i $n = 2$, a u drugom $m = 4$ i $n = 2$ pa dobivamo trojke (105, 36, 111) i (15, 36, 39).
+      \item Ako je $d = 4$, onda imamo $m^2 - n^2 = 9$ pa je $m = 5$ i $n = 4$ pa dobivamo trojku (36, 160, 164).
+      \item Ako je $d = 9$, onda imamo $2mn = 4$ pa je $m = 2$ i $n = 1$ pa dobivamo trojku (27, 36, 45).
+      \item Ako je $d = 12$, onda imamo $m^2 - n^2 = 3$ pa je $m = 2$ i $n = 1$ pa dobivamo trojku (36, 48, 60).
+    \end{enumerate}
+
+    \part Budući da je $56 = 2^3 \cdot 7$, imamo:
+    \begin{enumerate}
+      \item Ako je $d = 1$, onda imamo $2mn = 56$ pa imamo $m = 28$ i $n = 1$ ili $m = 7$ i $n = 4$ pa dobivamo trojke (783, 56, 785) i (33, 56, 65).
+      \item Ako je $d = 2$, onda imamo $2mn = 28$ pa dobivamo $m = 14$ i $n = 1$ ili $m = 7$ i $n = 2$ i dobivamo trojke (390, 56, 394) i (90, 56, 106).
+      \item Ako je $d = 7$, onda imamo $2mn = 8$ pa dobivamo $m = 4$ i $n = 1$ pa dobivamo trojku (105, 56, 119).
+      \item Ako je $d = 8$, onda imamo $m^2 - n^2 = 7$ pa je $m = 4$ i $n = 3$ pa dobivamo trojku (56, 192, 200).
+      \item Ako je $d = 14$, onda imamo $2mn = 4$ pa je $m = 2$ i $n = 1$ pa dobivamo trojku (42, 56, 70).
+    \end{enumerate}
+
+    \part Budući da je $116 = 2^2 \cdot 29$, imamo tri mogućnosti jer $d$ ne može biti 2, ni 58, niti 116:
+    \begin{enumerate}
+      \item Ako je $d = 1$, onda imamo ili $2mn = 116$ ili $m^2 - n^2 = 116$. U prvom slučaju dobivamo $m = 58$ i $n = 1$ te $m = 29$ i $n = 2$, a u drugom $m = 30$ i $n = 28$, ali nisu različite parnosti pa dobivamo samo dvije trojke (3363, 116, 3365) i (837, 116, 845).
+      \item Ako je $d = 4$, onda imamo $m^2 - n^2 = 29$ ili $m^2 + n^2 = 29$. U prvom slučaju dobivamo $m = 15$ i $n = 14$, a u drugom $m = 5$ i $n = 2$ pa dobivamo trojke (116, 1680, 1684) i (84, 80, 116).
+      \item Ako je $d = 29$, onda imamo $2mn = 4$ pa je $m = 2$ i $n = 1$ pa dobivamo trojku (87, 116, 145).
+    \end{enumerate}
+  \end{parts}
+\end{solution}
+
+\question Koliko ima primitivnih Pitagorinih trojki čija je hipotenuza manja od 100?
+
+\begin{solution}
+  Primitivne Pitagorine trojke su dane identitetom:
+  \[
+    (m^2-n^2)^2 + (2mn)^2 = (m^2+n^2)^2
+  \]
+  gdje su $m$ i $n$ relativno prosti i $m > n$ te su različite parnosti. Neka je $N(m)$ broj brojeva iz skupa $\{1, \dots, \min\{m - 1, \lfloor \sqrt{100 - m^2} \rfloor \}\}$ koji su relativno prosti s $m$ i različite parnosti od $m$. Ako je $m \geq 10$, onda je $m^2 + n^2 \geq 100$ za sve $n$, dakle $N(m) = 0$.
+  \[
+    \sum_{m = 2}^{\infty} N(m) = \sum_{m = 2}^{9} N(m) = 1 + 1 + 2 + 2 + 2 + 3 + 3 + 2 = 16
+  \]
+  Dakle, ima 16 primitivnih Pitagorinih trojki čija je hipotenuza manja od 100.
+\end{solution}
+
+\question Odredite sve Pitagorine trokute čije stranice čine aritmetički niz.
+
+\begin{solution}
+  Sve Pitagorine trojke su dane identitetom:
+  \[
+    [d(m^2-n^2)]^2 + [2dmn]^2 = [d(m^2+n^2)]^2
+  \]
+  gdje su $d, m, n \in \mathbb{N}$, $m > n$ i $m$ i $n$ su relativno prosti. Ako stranice čine aritmetički niz, onda
+  \begin{align*}
+    2dmn &= \frac{d(m^2-n^2) + d(m^2+n^2)}{2}\\
+    4mn &= 2m^2\\
+    2n &= m
+  \end{align*}
+  ili
+  \begin{align*}
+    d(m^2-n^2) &= \frac{2dmn + d(m^2+n^2)}{2}\\
+    2(m^2-n^2) &= 2mn + m^2 + n^2\\
+    m^2 - 2mn + n^2 - 4n^2 &= 0\\
+    (m - n)^2 - (2n)^2 &= 0\\
+    (m - 3n)(m + n) &= 0\\
+    m &= 3n
+  \end{align*}
+  Dakle, svi takvi Pitagorini trokuti imaju duljine stranica oblika $3dn^2$, $4dn^2$ i $5dn^2$ ili oblika $8dn^2$, $6dn^2$, $10dn^2$ što je zapravo isti oblik.
+\end{solution}
+
+\question Odredite sve Pitagorine trokute kojima je hipotenuza manja od 200 i za 1 je veća od jedne katete.
+
+\begin{solution}
+  Sve Pitagorine trojke su dane identitetom:
+  \[
+    [d(m^2-n^2)]^2 + [2dmn]^2 = [d(m^2+n^2)]^2
+  \]
+  gdje su $d, m, n \in \mathbb{N}$, $m > n$ i $m$ i $n$ su relativno prosti i različite partonsti. Dakle, tražimo sve trojke za koje je
+  \begin{enumerate}
+    \item
+      \[
+        200 > d(m^2+n^2) > d(m^2-n^2) > 2dmn \text{ i } d(m^2+n^2) = d(m^2-n^2) + 1
+      \]
+      Dakle, onda je $2dn^2 = 1$ što nema rješenja u $\mathbb{N}$.
+
+    \item
+      \[
+        200 > d(m^2+n^2) > 2dmn > d(m^2-n^2) \text{ i } d(m^2+n^2) = 2dmn + 1
+      \]
+      Dakle, onda je $d(m - n)^2 = 1$. Pa slijedi da je $d = 1$ i $m = n + 1$ i onda imamo
+      \begin{align*}
+        200 > n^2+2n+1+n^2 &> 2(n+1)n > n^2+2n+1-n^2\\
+        200 > 2n^2+2n+1 &> 2n^2+2n > 2n + 1
+      \end{align*}
+      Dakle, imamo $n \leq 9$ pa imamo trojke (3, 4, 5), (5, 12, 13), (7, 24, 25), (9, 40, 41), (11, 60, 61), (13, 84, 85), (15, 112, 113), (17, 144, 145), (19, 180, 181).
+  \end{enumerate}
+\end{solution}
+
+\question Odredite sve Pitagorine trokute čiji je opseg 60.
+
+\begin{solution}
+  Sve Pitagorine trojke su dane identitetom:
+  \[
+    [d(m^2-n^2)]^2 + [2dmn]^2 = [d(m^2+n^2)]^2
+  \]
+  gdje su $d, m, n \in \mathbb{N}$, $m > n$ i $m$ i $n$ su relativno prosti i različite parnosti. Dakle, opseg Pitagorinog trokuta je
+  \begin{align*}
+    d(m^2-n^2) + 2dmn + d(m^2+n^2) &= 60\\
+    2dm(m + n) &= 60\\
+    dm(m + n) &= 30 = 2 \cdot 3 \cdot 5
+  \end{align*}
+  \begin{enumerate}
+    \item Ako je $d = 1$, onda imamo $m(m + n) = 30$. Budući da je $m > n$, imamo $m + n > 2n$, tj. $2n^2 < 30$ pa je $n \leq 4$. Ako je $n = 4$, onda imamo $m^2 + 4m = 30$ što nema rješenja u $\mathbb{N}$. Ako je $n = 3$, onda imamo $m^2 + 3m = 30$ što također nema rješenja u $\mathbb{N}$. Ako je $n = 2$, onda također nema rješenja u $\mathbb{N}$. Ako je pak $n = 1$, onda postoji rješenje $m = 5$, ali onda $m$ i $n$ iste parnosti.
+    \item Ako je $d = 2$, onda imamo $m(m + n) = 15$. Budući da je $m > n$, imamo $m + n > 2n$, tj. $2n^2 < 15$ pa je $n \leq 2$. Ako je $n = 2$, onda imamo $m^2 + 2m = 15$ što ima rješenje $m = 3$ pa dobivamo trojku (10, 24, 26). Ako je $n = 1$, onda  nema rješenja u $\mathbb{N}$.
+    \item Ako je $d = 3$, onda imamo $m(m + n) = 10$. Budući da je $m > n$, imamo $m + n > 2n$, tj. $2n^2 < 10$ pa je $n \leq 2$. Ako je $n = 2$, onda imamo $m^2 + 2m = 10$ što nema rješenja u $\mathbb{N}$. Ako je $n = 1$, onda također nema rješenja u $\mathbb{N}$.
+    \item Ako je $d = 5$, onda imamo $m(m + n) = 6$. Budući da je $m > n$, imamo $m + n > 2n$, tj. $2n^2 < 6$ pa je $n \leq 1$. Ako je $n = 1$, onda imamo $m^2 + m = 6$ što ima rješenje $m = 2$ pa dobivamo trojku (15, 20, 25).
+    \item Ako imamo $d \geq 6$, onda imamo $m(m + n) \leq 5$ i budući da je $m > n$, imamo $m + n > 2n$, tj. $2n^2 \leq 5$ pa je $n \leq 1$. Ako je $n = 1$, onda imamo $m^2 + m \leq 5$ što nema rješenja u $\mathbb{N} \setminus \{1\}$.
+  \end{enumerate}
+  Dakle, jedina dva takva trokuta su (10, 24, 26) i (15, 20, 25).
+\end{solution}
+
+\pagebreak
+
+\question Dokažite da ne postoji Pitagorin trokut čija je površina jednaka 82.
+
+\begin{solution}
+  Sve Pitagorine trojke su dane identitetom:
+  \[
+    [d(m^2-n^2)]^2 + [2dmn]^2 = [d(m^2+n^2)]^2
+  \]
+  gdje su $d, m, n \in \mathbb{N}$, $m > n$ i $m$ i $n$ su relativno prosti i različite parnosti. Dakle, ako je površina Pitagorinog trokuta jednaka 82, onda je
+  \begin{align*}
+    \frac{1}{2}d(m^2-n^2)2dmn &= 82\\
+    d(m^2-n^2)mn &= 82\\
+    d(m + n)(m - n)mn &= 2 \cdot 41\\
+  \end{align*}
+  Budući da je $m > 1$ i $n \geq 1$ imamo i $m + n > 2$ pa moramo imati $m + n = 41$ i $m = 2$ i $m - n = 1$ što nema rješenja, dakle ne postoji Pitagorin trokut čija je površina jednaka 82.
+\end{solution}
+
+\question Odredite sve Pitagorine trokute čija je površina manja od 130, a opseg veći od 30.
+
+\begin{solution}
+  Sve Pitagorine trojke su dane identitetom:
+  \[
+    [d(m^2-n^2)]^2 + [2dmn]^2 = [d(m^2+n^2)]^2
+  \]
+  gdje su $d, m, n \in \mathbb{N}$, $m > n$ i $m$ i $n$ su relativno prosti i različite parnosti. Dakle, ako je površina Pitagorinog trokuta manja od 130, a opseg veći od 30, onda je
+  \begin{align*}
+    \frac{1}{2}d(m^2-n^2)2dmn &< 130\\
+    d^2(m+n)(m-n)mn &< 130
+  \end{align*}
+  \begin{align*}
+    d(m^2+n^2) + 2dmn + d(m^2-n^2) &> 30\\
+    d(2m^2+2mn) &> 30\\
+    d(m + n)m &> 15
+  \end{align*}
+  Dakle, imamo $130 > d^2(m+n)(m-n)mn > 15d(m - n)n$ pa onda i $d(m - n)n \leq 8$.
+  \begin{enumerate}
+    \item Ako je $d = 1$, budući da je $m \geq n + 1$ imamo $(2n+1)(n+1)n \leq 130$. Dakle, $n \leq 3$. Ako je $n = 1$, imamo $(m^2 - 1)m < 130$ i $(m + 1)m > 15$. Dakle, $m \leq 5$ i $m \geq 4$ pa imamo trojku (15, 8, 17) jer $m$ mora biti različite parnosti od $n$ pa nema rješenja. Ako je $n = 2$, imamo $2(m^2 - 4)m < 130$ i $(m + 2)m > 15$. Dakle, $m \leq 4$ i $m \geq 4$ ali $m$ mora biti različite parnosti od $n$ pa nema rješenja. Ako je $n = 3$, imamo $3(m^2 - 9)m < 130$ i $(m + 3)m > 15$. Dakle, $m \leq 4$ i $m \geq 3$ ali $m$ mora biti veći od $n$ pa imamo trojku (7, 24, 25).
+
+    \item Ako je $d = 2$, budući da je $m \geq n + 1$ imamo $(2n+1)(n+1)n \leq \lfloor \frac{130}{4} \rfloor = 32$. Dakle, $n \leq 2$. Ako je $n = 1$, onda imamo $(m^2-1)m \leq 32$ i $2(m+1)m > 15$. Dakle, $m \leq 3$ i $m \geq 3$ pa nema rješenja jer $m$ i $n$ moraju biti različite parnosti. Ako je $n = 2$, onda imamo $2(m^2-4)m \leq 32$ i $2(m+2)m > 15$. Dakle, $m \leq 3$ i $m \geq 2$ pa imamo trojku (10, 24, 26).
+
+    \item Ako je $d = 3$, budući da je $m \geq n + 1$ imamo $(2n+1)(n+1)n \leq \lfloor \frac{130}{9} \rfloor = 14$. Dakle, $n \leq 1$. Dakle, $n = 1$ i imamo $(m^2-1)m \leq 14$ i $3(m+1)m > 15$. Dakle, $m \leq 2$ i $m \geq 2$ pa imamo trojku (9, 12, 15).
+
+    \item Ako je $d = 4$, budući da je $m \geq n + 1$ imamo $(2n+1)(n+1)n \leq \lfloor \frac{130}{16} \rfloor = 8$. Dakle, $n \leq 1$. Dakle, $n = 1$ i imamo $(m^2-1)m \leq 8$ i $4(m+1)m > 15$. Dakle, $m \leq 2$ i $m \geq 2$ pa imamo trojku (12, 16, 20).
+
+    \item Ako je $d \geq 5$, budući da je $m \geq n + 1$ imamo $(2n+1)(n+1)n \leq \lfloor \frac{130}{25} \rfloor = 5$. Dakle, $n \leq 0$ pa nema rješenja u $\mathbb{N}$.
+  \end{enumerate}
+\end{solution}
+
+\question Odredite sve primitivne Pitagorine trojke čije sve tri stranice leže izmedu 2000 i 3000.
+
+\begin{solution}
+  Sve primitivne Pitagorine trojke su dane identitetom:
+  \[
+    (m^2-n^2)^2 + (2mn)^2 = (m^2+n^2)^2
+  \]
+  gdje su $m$ i $n$ relativno prosti i $m > n$ i različite su parnosti. Dakle, tražimo sve $m$ i $n$ takve da:
+  \begin{align}
+    2000 &< m^2-n^2 < 3000 \implies n^2 < m^2-2000\\
+    2000 &< 2mn < 3000 \implies n > \frac{1000}{m}\\
+    2000 &< m^2+n^2 < 3000
+  \end{align}
+  Dakle, imamo
+  \begin{align*}
+    2000 &< m^2 < 3000 \implies 45 \leq m \leq 53\\
+    m^2 - 2000 &> n^2 > \frac{1000^2}{m^2} \implies m \geq 50
+  \end{align*}
+  Ako je $m = 50$, onda imamo $500 > n^2 > 400$, tj. $22 > n > 20$, tj. $n = 21$ pa imamo trojku (2059, 2100, 2941).
+  Ako je $m \in \{51, 52\}$, onda imamo $704 > m^2 - 2000 > n^2 > \frac{1000^2}{m^2} > 361$, tj. $26 > n > 19$, ali imamo i $n^2 < 3000 - m^2 < 399$, tj. $n \leq 19$ pa nema rješenja.
+  Ako je pak $m = 53$, imamo $809 = m^2 - 2000 > n^2 > \frac{1000^2}{m^2} > 324$, tj. $28 > n > 18$, ali imamo i $n^2 < 3000 - m^2 = 191$, tj. $n \leq 13$ pa nema rješenja.
+\end{solution}
+
+\pagebreak
+
+\question Razvijte u jednostavni verižni razlomak brojeve $\displaystyle \frac{146}{177}$ i $\displaystyle \frac{341}{129}$
+
+\begin{solution}
+  Budući da su ovo racionalni brojevi, onda su njihovi verižni razlomci konačni i računamo ih Euklidovim algoritmom. Imamo:
+  \begin{align*}
+    177 &= 1 \cdot 146 + 31\\
+    146 &= 4 \cdot 31 + 22\\
+    31 &= 1 \cdot 22 + 9\\
+    22 &= 2 \cdot 9 + 4\\
+    9 &= 2 \cdot 4 + 1\\
+    4 &= 4 \cdot 1
+  \end{align*}
+  Dakle, $\frac{177}{146} = [1; 4, 1, 2, 2, 4]$. Dakle, $\frac{146}{177} = [0; 1, 4, 1, 2, 2, 4]$. Slično, imamo:
+  \begin{align*}
+    341 &= 2 \cdot 129 + 83\\
+    129 &= 1 \cdot 83 + 46\\
+    83 &= 1 \cdot 46 + 37\\
+    46 &= 1 \cdot 37 + 9\\
+    37 &= 4 \cdot 9 + 1\\
+    9 &= 9 \cdot 1
+  \end{align*}
+  Dakle, $\frac{341}{129} = [2; 1, 1, 1, 4, 9]$.
+\end{solution}
+
+\question Razvijte u jednostavni verižni razlomak sljedeće realne brojeve:
+\begin{parts}
+  \parbox{.06\linewidth}{
+    \part $\sqrt{58}$
+  }\hspace*{1cm}
+  \parbox{.06\linewidth}{
+    \part $\sqrt{89}$
+  }\hspace*{1cm}
+  \parbox{.08\linewidth}{
+    \part $\sqrt{173}$
+  }\hspace*{1cm}
+  \parbox{.08\linewidth}{
+    \part $\sqrt{185}$
+  }\hspace*{1cm}
+\end{parts}
+
+\begin{solution}
+  Imamo rekurzije $s_i = a_{i - 1}t_{i - 1} - s_{i - 1}$, $t_i = \frac{d - s_{i}^2}{t_{i - 1}}$ i $a_i = \lfloor \frac{s_i + a_0}{t_i} \rfloor$ te početne vrijednosti $s_0 = 0$, $t_0 = 1$ i $a_0 = \lfloor \sqrt{d} \rfloor$.
+  \begin{parts}
+    \part
+    \begin{tabular}{|c|ccccccccc|}
+      \hline
+      $i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+      \hline
+      $s_{i}$ & 0 & 7 & 2 & 4 & 3 & 4 & 2 & 7 & 7 \\
+      \hline
+      $t_{i}$ & 1 & 9 & 6 & 7 & 7 & 6 & 9 & 1 & 9 \\
+      \hline
+      $a_{i}$ & 7 & 1 & 1 & 1 & 1 & 1 & 1 & 14 &  \\
+      \hline
+    \end{tabular}
+    \quad Dakle, $\sqrt{58} = [7; \overline{1, 1, 1, 1, 1, 1, 14}]$.
+
+    \part
+    \begin{tabular}{|c|ccccccc|}
+      \hline
+      $i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+      \hline
+      $s_{i}$ & 0 & 9 & 7 & 8 & 7 & 9 & 9 \\
+      \hline
+      $t_{i}$ & 1 & 8 & 5 & 5 & 8 & 1 & 8 \\
+      \hline
+      $a_{i}$ & 9 & 2 & 3 & 3 & 2 & 18 & \\
+      \hline
+    \end{tabular}
+    \quad Dakle, $\sqrt{89} = [9; \overline{2, 3, 3, 2, 18}]$.
+
+    \part
+    \begin{tabular}{|c|ccccccc|}
+      \hline
+      $i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+      \hline
+      $s_{i}$ & 0 & 13 & 11 & 2 & 11 & 13 & 13 \\
+      \hline
+      $t_{i}$ & 1 & 4 & 13 & 13 & 4 & 1 & 4 \\
+      \hline
+      $a_{i}$ & 13 & 6 & 1 & 1 & 6 & 26 & \\
+      \hline
+    \end{tabular}
+    \quad Dakle, $\sqrt{173} = [13; \overline{6, 1, 1, 6, 26}]$.
+
+    \pagebreak
+
+    \part
+    \begin{tabular}{|c|ccccccc|}
+      \hline
+      $i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+      \hline
+      $s_{i}$ & 0 & 13 & 3 & 8 & 3 & 13 & 13 \\
+      \hline
+      $t_{i}$ & 1 & 16 & 11 & 11 & 16 & 1 & 16 \\
+      \hline
+      $a_{i}$ & 13 & 1 & 1 & 1 & 1 & 26 & \\
+      \hline
+    \end{tabular}
+    \quad Dakle, $\sqrt{185} = [13; \overline{1, 1, 1, 1, 26}]$.
+  \end{parts}
+\end{solution}
+
+\question
+\begin{parts}
+  \part Razvijte u jednostavni verižni razlomak $\sqrt{n^2 - n}$, $n \geq 2$
+  \part Odredite prvih pet konvergenti u razvoju od $\sqrt{n^2 - n}$, $n \geq 2$, u jednostavni verižni razlomak.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part Imamo rekurzije $s_i = a_{i - 1}t_{i - 1} - s_{i - 1}$, $t_i = \frac{d - s_{i}^2}{t_{i - 1}}$ i $a_i = \lfloor \frac{s_i + a_0}{t_i} \rfloor$ te početne vrijednosti $s_0 = 0$, $t_0 = 1$ i $a_0 = \lfloor \sqrt{d} \rfloor$. Imamo i $d = n^2 - n$ i znamo da vrijedi
+    \[
+      (n - 1)^2 = n^2 - 2n + 1 < n^2 - n < n^2
+    \]
+    pa je $\lfloor \sqrt{n^2 - n} \rfloor = n - 1$ i imamo:
+
+    \begin{tabular}{|c|cccc|}
+      \hline
+      $i$ & 0 & 1 & 2 & 3 \\
+      \hline
+      $s_{i}$ & 0 & $n - 1$ & $n - 1$ & $n - 1$\\
+      \hline
+      $t_{i}$ & 1 & $n - 1$ & 1 & $n - 1$\\
+      \hline
+      $a_{i}$ & $n - 1$ & 2 & $2n - 2$ & \\
+      \hline
+    \end{tabular}
+
+    Dakle, $\sqrt{n^2 - n} = [n - 1; \overline{2, 2n - 2}]$.
+
+    \part Za računanje kovergenti imamo rekurzije $p_i = a_i p_{i - 1} + p_{i - 2}$ i $q_i = a_i q_{i - 1} + q_{i - 2}$ te početne vrijednosti $p_{-1} = 1$, $p_0 = a_0$, $q_{-1} = 0$ i $q_0 = 1$. Dakle, imamo:
+
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+      $i$ & $a_i$ & $p_i$ & $q_i$\\
+      \hline
+      -1 & & 1 & 0\\
+      0 & $n - 1$ & $n - 1$ & 1\\
+      1 & 2 & $2n - 1$ & 2\\
+      2 & $2n - 2$ & $4n^2 - 5n + 1$ & $4n - 3$\\
+      3 & 2 & $8n^2 - 8n + 1$ & $8n - 4$\\
+      4 & $2n - 2$ & $16n^3 - 28n^2 + 13n - 1$ & $16n^2 - 20n + 5$ \\
+      5 & 2 & $32n^3 - 48n^2 + 18n - 1$ & $32n^2 - 32n + 6$\\
+      \hline
+    \end{tabular}
+
+    Dakle, prvih 5 konvergenti su:
+    \[
+      \frac{2n-1}{2} \quad \frac{4n^2 - 5n + 1}{4n - 3} \quad \frac{8n^2 - 8n + 1}{8n - 4} \quad \frac{16n^3 - 28n^2 + 13n - 1}{16n^2 - 20n + 5} \quad \frac{32n^3 - 48n^2 + 18n - 1}{32n^2 - 32n + 6}
+    \]
+  \end{parts}
+\end{solution}
+
+\pagebreak
+
+\question Razvijte u jednostavni verižni razlomak sljedeće realne brojeve
+\begin{parts}
+  \parbox{.15\linewidth}{
+    \part $\displaystyle \frac{5 + \sqrt{17}}{4}$
+  }\hspace*{1cm}
+  \parbox{.15\linewidth}{
+    \part $\displaystyle \frac{1 + \sqrt{13}}{5}$
+  }\hspace*{1cm}
+\end{parts}
+
+\begin{solution}
+  Imamo rekurzije $\alpha_i = a_i + \frac{1}{\alpha_{i+1}}$ što je ekvivalentno s $\alpha_i = \frac{1}{\alpha_{i-1} - a_{i-1}}$ i $a_i = \lfloor \alpha_i \rfloor$ te početne vrijednosti $\alpha_0 = \alpha$ i $a_0 = \lfloor \alpha \rfloor$. Došli smo do perioda $r$ kada je $\alpha_{k + r} = \alpha_k$ za neki $k < r$. Tada je $\alpha = [a_0; a_1, \ldots, a_{k-1}, \overline{a_k, \ldots, a_{k + r - 1}}]$.
+  \begin{parts}
+    \part
+    \begin{align*}
+      \alpha_0 = \frac{5 + \sqrt{17}}{4} &\implies a_0 = 2\\
+      \alpha_1 = \frac{1}{\frac{5 + \sqrt{17}}{4} - 2} = \frac{4}{\sqrt{17} - 3} = \frac{3 + \sqrt{17}}{2} &\implies a_1 = 3\\
+      \alpha_2 = \frac{1}{\frac{3 + \sqrt{17}}{2} - 3} = \frac{2}{\sqrt{17} - 3} = \frac{3 + \sqrt{17}}{4} &\implies a_2 = 1\\
+      \alpha_3 = \frac{1}{\frac{3 + \sqrt{17}}{4} - 1} = \frac{4}{\sqrt{17} - 1} = \frac{1 + \sqrt{17}}{4} &\implies a_3 = 1\\
+      \alpha_4 = \frac{1}{\frac{1 + \sqrt{17}}{4} - 1} = \frac{4}{\sqrt{17} - 3} = \frac{3 + \sqrt{17}}{2} = \alpha_1 &\implies r = 3, \quad k = 1
+    \end{align*}
+    Dakle, $\displaystyle \frac{5 + \sqrt{17}}{4} = [2; \overline{3, 1, 1}]$.
+
+    \part
+    \begin{align*}
+      \alpha_0 = \frac{1 + \sqrt{13}}{5} &\implies a_0 = 0\\
+      \alpha_1 = \frac{1}{\frac{1 + \sqrt{13}}{5}} = \frac{5}{1 + \sqrt{13}} = \frac{5 \sqrt{13} - 5}{12} &\implies a_1 = 1\\
+      \alpha_2 = \frac{1}{\frac{5 \sqrt{13} - 5}{12} - 1} = \frac{12}{5 \sqrt{13} - 17} = \frac{17 + 5 \sqrt{13}}{3} &\implies a_2 = 11\\
+      \alpha_3 = \frac{1}{\frac{17 + 5 \sqrt{13}}{3} - 11} = \frac{3}{5 \sqrt{13} - 16} = \frac{16 + 5 \sqrt{13}}{23} &\implies a_3 = 1\\
+      \alpha_4 = \frac{1}{\frac{16 + 5 \sqrt{13}}{23} - 1} = \frac{23}{5 \sqrt{13} - 7} = \frac{7 + 5 \sqrt{13}}{12} &\implies a_4 = 2\\
+      \alpha_5 = \frac{1}{\frac{7 + 5 \sqrt{13}}{12} - 2} = \frac{12}{5 \sqrt{13} - 17} = \frac{17 + 5 \sqrt{13}}{3} = \alpha_2 &\implies r = 3, \quad k = 2
+    \end{align*}
+    Dakle, $\displaystyle \frac{1 + \sqrt{13}}{5} = [0; 1, \overline{11, 1, 2}]$.
+  \end{parts}
+\end{solution}
+
+\pagebreak
+
+\question Odredite realan broj $\alpha$ čiji je rastav u jednostavni verižni razlomak dan sa:
+\begin{parts}
+  \part $\alpha = [3, 2, 1]$
+  \part $\alpha = [3, \overline{2, 1}]$
+  \part $\alpha = [6, \overline{2, 2, 12}]$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part Po definiciji imamo
+    \begin{align*}
+      \alpha &= 3 + \cfrac{1}{2 + \cfrac{1}{1}} = 3 + \cfrac{1}{2 + 1} = 3 + \cfrac{1}{3} = \cfrac{10}{3}
+    \end{align*}
+
+    \part Po definiciji imamo
+    \begin{align*}
+      \alpha &= 3 + \cfrac{1}{2 + \cfrac{1}{1 + \cfrac{1}{2 + \cdots}}}
+    \end{align*}
+    Definirajmo $x_k = 2 + \cfrac{1}{1 + \cfrac{1}{x_{k-1}}}$ za $k > 1$ i $x_1 = 2 + \cfrac{1}{1}$. Tada imamo:
+    \begin{align*}
+      X = \lim_{n \rightarrow \infty} x_n &= \lim_{n \rightarrow \infty} 2 + \cfrac{1}{1 + \cfrac{1}{x_{k-1}}} = 2 + \cfrac{1}{1 + \cfrac{1}{\lim_{n \rightarrow \infty} x_{n-1}}} = 2 + \cfrac{1}{1 + \cfrac{1}{X}}
+    \end{align*}
+    \begin{align*}
+      (X - 2)(\frac{1}{X} + 1) &= 1\\
+      (X - 2)(X + 1) &= X\\
+      X^2 - 2X - 2 &= 0\\
+      X = 1 \pm \sqrt{3}
+    \end{align*}
+    \begin{align*}
+      \alpha &= \lim_{n \rightarrow \infty} 3 + \cfrac{1}{x_n} = 3 + \cfrac{1}{\lim_{n \rightarrow \infty} x_n} = \frac{3 \pm 3\sqrt{3}}{1 \pm \sqrt{3}} + \frac{1}{1 \pm \sqrt{3}} = \frac{4 \pm 3\sqrt{3}}{1 \pm \sqrt{3}}\\
+      &= \frac{(4 \pm 3\sqrt{3})(1 \mp \sqrt{3})}{(1 \pm \sqrt{3})(1 \mp \sqrt{3})} = \frac{(4 \mp 4 \sqrt{3} \pm 3 sqrt{3} - 9)}{-2} = \frac{-5 \pm \sqrt{3}}{-2} = \frac{5 \mp \sqrt{3}}{2}
+    \end{align*}
+    Budući da je $a_0 = 3$, znamo da je $\lfloor \alpha \rfloor = 3$ pa je $\alpha = \frac{5 + \sqrt{3}}{2}$.
+
+    \pagebreak
+
+    \part Slično kao i u prethodnom zadatku, imamo
+    \begin{align*}
+      X &= 2 + \cfrac{1}{2 + \cfrac{1}{12 + \cfrac{1}{X}}} \implies
+      \frac{1}{X - 2} = 2 + \cfrac{1}{12 + \cfrac{1}{X}} \implies
+      \frac{1}{\frac{1}{X - 2} - 2} = 12 + \cfrac{1}{X}
+    \end{align*}
+    \begin{align*}
+      \frac{X(X - 2)}{1 - 2X + 4} &= 12X + 1 \implies
+      X^2 - 2X = (12X + 1)(5 - 2X) \\
+      X^2 - 2X &= -24X^2 + 58X + 5 \implies
+      25X^2 - 60X - 5 = 0
+    \end{align*}
+    Dakle, $X = \frac{6 \pm \sqrt{41}}{5}$ pa je
+    \begin{align*}
+      \alpha &= 6 + \frac{1}{X} = 6 + \frac{5}{6 \pm \sqrt{41}} = \frac{36 \pm 6 \sqrt{41} + 5}{6 \pm \sqrt{41}} = \frac{41 \pm 6 \sqrt{41}}{6 \pm \sqrt{41}} = \sqrt{41} \frac{\sqrt{41} \pm 6}{6 \pm \sqrt{41}} = \pm \sqrt{41}
+    \end{align*}
+    Budući da je $a_0 = 6$, imamo $\alpha = \sqrt{41}$.
+  \end{parts}
+\end{solution}
+
+\question Odredite najmanja rješenja (ako postoje) u skupu prirodnih brojeva sljedećih jednadžbi:
+\begin{parts}
+  \parbox{.2\linewidth}{
+    \part $x^2 - 57y^2 = \pm 1$
+  }\hspace*{1cm}
+  \parbox{.2\linewidth}{
+    \part $x^2 - 95y^2 = \pm 1$
+  }\hspace*{1cm}
+  \parbox{.2\linewidth}{
+    \part $x^2 - 183y^2 = \pm 1$
+  }\hspace*{1cm}
+\end{parts}
+
+\begin{solution}
+  Za rješavanje jednadžbe oblika $x^2 - dy^2 = 1$ prvo trebamo izračunati jednostavan verižni razlomak od $\sqrt{d}$.
+  \begin{parts}
+    \part Za $d = 57$ imamo:
+
+    \begin{tabular}{|c|cccccccc|}
+      \hline
+      $i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+      \hline
+      $s_{i}$ & 0 & 7 & 1 & 6 & 6 & 1 & 7 & 7 \\
+      \hline
+      $t_{i}$ & 1 & 8 & 7 & 3 & 7 & 8 & 1 & 8 \\
+      \hline
+      $a_{i}$ & 7 & 1 & 1 & 4 & 1 & 1 & 14 & \\
+      \hline
+    \end{tabular}
+
+    Dakle, $\sqrt{57} = [7; \overline{1, 1, 4, 1, 1, 14}]$. Period $r = 6$ je paran pa nema rješenja jednadžbe $x^2 - 57y^2 = -1$. Za $x^2 - 57y^2 = 1$ imamo fundamentalno rješenje $(x, y) = (p_5, q_5)$.
+
+    \begin{tabular}{|c|ccccccc|}
+      \hline
+      $i$ & -1 & 0 & 1 & 2 & 3 & 4 & 5\\
+      \hline
+      $a_i$ & & 7 & 1 & 1 & 4 & 1 & 1\\
+      \hline
+      $p_i$ & 1 & 7 & 8 & 15 & 68 & 83 & 151\\
+      \hline
+      $q_i$ & 0 & 1 & 1 & 2 & 9 & 11 & 20\\
+      \hline
+    \end{tabular}
+
+    Dakle, $(x, y) = (151, 20)$ je najmanje rješenje jednadžbe $x^2 - 57y^2 = 1$.
+
+    \part Za $d = 95$ imamo:
+
+    \begin{tabular}{|c|cccccc|}
+      \hline
+      $i$ & 0 & 1 & 2 & 3 & 4 & 5 \\
+      \hline
+      $s_{i}$ & 0 & 9 & 5 & 5 & 9 & 9 \\
+      \hline
+      $t_{i}$ & 1 & 14 & 5 & 14 & 1 & 14 \\
+      \hline
+      $a_{i}$  & 9 & 1 & 2 & 1 & 18 & \\
+      \hline
+    \end{tabular}
+
+    Dakle, $\sqrt{95} = [9; \overline{1, 2, 1, 18}]$. Period $r = 4$ je paran pa nema rješenja jednadžbe $x^2 - 95y^2 = -1$. Za $x^2 - 95y^2 = 1$ imamo fundamentalno rješenje $(x, y) = (p_3, q_3)$.
+
+    \begin{tabular}{|c|ccccc|}
+      \hline
+      $i$ & -1 & 0 & 1 & 2 & 3\\
+      \hline
+      $a_i$ & & 9 & 1 & 2 & 1\\
+      \hline
+      $p_i$ & 1 & 9 & 10 & 29 & 39\\
+      \hline
+      $q_i$ & 0 & 1 & 1 & 3 & 4\\
+      \hline
+    \end{tabular}
+
+    Dakle, $(x, y) = (39, 4)$ je najmanje rješenje jednadžbe $x^2 - 95y^2 = 1$.
+
+    \part Za $d = 183$ imamo:
+
+    \begin{tabular}{|c|cccccccc|}
+      \hline
+      $i$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+      \hline
+      $s_{i}$ & 0 & 13 & 1 & 12 & 12 & 1 & 13 & 13 \\
+      \hline
+      $t_{i}$ & 1 & 14 & 13 & 3 & 13 & 14 & 1 & 14 \\
+      \hline
+      $a_{i}$ & 13 & 1 & 1 & 8 & 1 & 1 & 26 & \\
+      \hline
+    \end{tabular}
+
+    Dakle, $\sqrt{183} = [13; \overline{1, 1, 8, 1, 1, 26}]$. Period $r = 6$ je paran pa nema rješenja jednadžbe $x^2 - 183y^2 = -1$. Za $x^2 - 183y^2 = 1$ imamo fundamentalno rješenje $(x, y) = (p_5, q_5)$.
+
+    \begin{tabular}{|c|ccccccc|}
+      \hline
+      $i$ & -1 & 0 & 1 & 2 & 3 & 4 & 5\\
+      \hline
+      $a_i$ & & 13 & 1 & 1 & 8 & 1 & 1\\
+      \hline
+      $p_i$ & 1 & 13 & 14 & 27 & 230 & 257 & 487\\
+      \hline
+      $q_i$ & 0 & 1 & 1 & 2 & 17 & 19 & 36\\
+      \hline
+    \end{tabular}
+
+  \end{parts}
+\end{solution}
+
+\question Nadite sva rješenja Pellove jednadžbe $x^2 - 146y^2 = 1$ za koja vrijedi $1 < x < 100000$.
+
+\begin{solution}
+  Imamo:
+
+  \begin{tabular}{|c|cccc|}
+    \hline
+    $i$ & 0 & 1 & 2 & 3 \\
+    \hline
+    $s_{i}$ & 0 & 12 & 12 & 12 \\
+    \hline
+    $t_{i}$ & 1 & 2 & 1 & 2 \\
+    \hline
+    $a_{i}$ & 12 & 12 & 24 & \\
+    \hline
+  \end{tabular}
+
+  Dakle, $\sqrt{146} = [12; \overline{12, 24}]$. Budući da je period $r = 2$, imamo $(x_1, y_1) = (p_1, q_1)$.
+
+  \begin{tabular}{|c|ccc|}
+    \hline
+    $i$ & -1 & 0 & 1\\
+    \hline
+    $a_i$ & & 12 & 12\\
+    \hline
+    $p_i$ & 1 & 12 & 145\\
+    \hline
+    $q_i$ & 0 & 1 & 12\\
+    \hline
+  \end{tabular}
+
+  Dakle, $(x_1, y_1) = (145, 12)$ je fundamentalno rješenje. Sada imamo rekurzije $x_i = 2x_1x_{i-1} - x_{i-2}$ i $y_i = 2x_1y_{i-1} - y_{i-2}$ te početne vrijednosti $x_0 = 1$, $y_0 = 0$.
+
+  \begin{tabular}{|c|cccc|}
+    \hline
+    $i$ & 0 & 1 & 2 & 3\\
+    \hline
+    $x_i$ & 1 & 145 & 42049 & 12194065\\
+    \hline
+    $y_i$ & 0 & 12 & 3480 &\\
+    \hline
+  \end{tabular}
+
+  Dakle, postoje samo 2 rješenja s $1 < x < 100000$ i to su $(x, y) = (145, 12)$ i $(x, y) = (42049, 3480)$.
+\end{solution}
+
+\pagebreak
+
+\question Neka je $n$ fiksiran prirodan broj
+\begin{parts}
+  \part Razvijte u jednostavni verižni razlomak broj $\sqrt{n^2 + 2}$.
+  \part Nađite barem dva prirodna broja $x$ (izražena pomoću $n$) takva da je $(n^2 + 2) x^2 + 1$ kvadrat prirodnog broja.
+  \part Postoji li prirodan broj $x$ takav da je $(n^2 + 2) x^2 - 1$ kvadrat prirodnog broja? Obrazložite.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part Imamo rekurzije $s_i = a_{i - 1}t_{i - 1} - s_{i - 1}$, $t_i = \frac{d - s_{i}^2}{t_{i - 1}}$ i $a_i = \lfloor \frac{s_i + a_0}{t_i} \rfloor$ te početne vrijednosti $s_0 = 0$, $t_0 = 1$ i $a_0 = \lfloor \sqrt{d} \rfloor$. Imamo i $d = n^2 - n$ i znamo da vrijedi
+    \[
+      n^2 < n^2 + 2 < n^2 + 2n + 1 = (n + 1)^2
+    \]
+    pa je $\lfloor \sqrt{n^2 + 2} \rfloor = n$ i imamo:
+
+    \begin{tabular}{|c|cccc|}
+      \hline
+      $i$ & 0 & 1 & 2 & 3 \\
+      \hline
+      $s_{i}$ & 0 & $n$ & $n$ & $n$\\
+      \hline
+      $t_{i}$ & 1 & 2 & 1 & 2\\
+      \hline
+      $a_{i}$ & $n$ & $n$ & $2n$ & \\
+      \hline
+    \end{tabular}
+
+    Dakle, $\sqrt{n^2 + 2} = [n; \overline{n, 2n}]$.
+
+    \part Imamo $(n^2 + 2)x^2 + 1 = y^2$ pa je $y^2 - (n^2+2)x^2 = 1$. Uzmimo oznake $X = y$, $Y = x$ i $d = n^2 + 2$. Sada imamo jednadžbu $X^2 - dY^2 = 1$. Budući da je period $r = 2$ paran, fundamentalno rješenje $(X_1, Y_1) = (p_1, q_1)$.
+
+    \begin{tabular}{|c|ccc|}
+      \hline
+      $i$ & -1 & 0 & 1\\
+      \hline
+      $a_i$ & & $n$ & $n$\\
+      \hline
+      $p_i$ & 1 & $n$ & $n^2 + 1$\\
+      \hline
+      $q_i$ & 0 & 1 & $n$\\
+      \hline
+    \end{tabular}
+
+    Dakle, fundamentalno rješenje je $(X_1, Y_1) = (n^2 + 1, n)$. Iduće rješenje možemo dobiti rekurizijama $X_i = 2 X_1 X_{i - 1} - X_{i - 2}$ i $Y_i = 2 X_1 Y_{i - 1} - Y_{i - 2}$ te početnim vrijednostima $X_0 = 1$, $Y_0 = 0$. Dakle, imamo:
+    \begin{align*}
+      X_2 &= 2 X_1^2 - X_0 = 2 (n^2+1)^2 - 1 = 2n^4 + 4n^2 + 1\\
+      Y_2 &= 2 X_1 Y_1 - Y_0 = 2 (n^2 + 1) n = 2n^3 + 2n
+    \end{align*}
+
+    Dakle, imamo $x_1 = n$, $x_2 = 2n^3 + 2n$.
+
+    \part Imamo $(n^2 + 2)x^2 - 1 = y^2$ pa je $y^2 - (n^2+2)x^2 = -1$. Uzmimo oznake $X = y$, $Y = x$ i $d = n^2 + 2$. Sada imamo jednadžbu $X^2 - dY^2 = -1$. Budući da je period $r = 2$ paran, ova jednadžba nema rješenja.
+  \end{parts}
+\end{solution}
+
+\end{questions}
+
+\end{document}
