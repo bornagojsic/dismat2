@@ -29,7 +29,7 @@ def solve_crt():
     y = [m_j[i] * x_j[i] for i in range(n)]
     print(f"y = {y}")
 
-    x = sum([a[i] * m_j[i] * y[i] for i in range(n)]) % M
+    x = sum([y[i] for i in range(n)]) % M
 
     print(f"Rješenje je x = {x}")
 
